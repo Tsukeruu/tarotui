@@ -9,7 +9,6 @@
 """
 
 from utils.Exceptions import *
-from utils.Dataclasses import *
 from utils.Cards import *
 from utils.Placements import *
 from utils.StaticMethods import *
@@ -31,8 +30,6 @@ class App(widgetInit):
 
     def executeProgram(self) -> None:
        super().__init__()
-
-
 
 main = App()
 main.executeProgram()

@@ -1,10 +1,22 @@
 """
-Try to understand what you just wrote
+Try to understand what you just wrote and add colors
 """
+
+"""
+▀█▀ █▀█ █▀▄ █▀█ ▀█▀ █ █  █
+ █  █▀█ █▀▄ █ █  █  █ █  █
+ ▀  ▀ ▀ ▀ ▀ ▀▀▀  ▀  ▀▀▀  ▀
+    tarotui is a terminal-based tarot reading experience done in urwid and in python
+    main component for the layout
+"""
+
+import urwid
 
 from dataclasses import dataclass, field
 from urwid import Button, LineBox, Filler, Pile, Text, Edit, MainLoop, Padding
-from typing import List, Dict, Union, Tuple
+from typing import List, Dict, Union, Tuple, Any
+from utils.Colors import ColorInit
+from utils.StaticMethods import runLoop, applyPalette 
 
 import sys
 import subprocess
@@ -27,36 +39,33 @@ class RoundBox(LineBox):
             )
 
 @dataclass
-class necessaryData:
+class necessaryData(ColorInit):
     headerTitle: str = """
 ▀█▀ █▀█ █▀▄ █▀█ ▀█▀ █ █  █
  █  █▀█ █▀▄ █ █  █  █ █  █
  ▀  ▀ ▀ ▀ ▀ ▀▀▀  ▀  ▀▀▀  ▀
 """
-    inputWidth: int = 60
+    inputWidth: int = 55
     inputTitle: str = "Ask the fates"
-    
-    @staticmethod
-    def runLoop(mainWidget: urwid.Filler, palette: List[Tuple(str)] = None) -> urwid.MainLoop:
-        mainLoop: urwid.MainLoop = MainLoop(mainWidget,palette=palette)
-        mainLoop.run()
-        return mainLoop
+    screen: urwid.raw_display.Screen = urwid.raw_display.Screen()
 
 class widgetInit(necessaryData):
     def __init__(self) -> None:
-        self.userInput: urwid.Padding = Padding(
+        self.screen.set_terminal_properties(256)
+        self.userInput: Any = applyPalette(Padding(
                 RoundBox(
                     Edit(caption=" > "),title=self.inputTitle,title_align='left', 
                     ),
                 width=self.inputWidth, align='center'
-            )
+            ),"inputBorder")
 
-        self.headerTitle: urwid.Text = Text(self.headerTitle, align='center')
+        self.headerTitle: Any = applyPalette(Text(self.headerTitle, align='center'),"header")
         self.pile: urwid.Pile = Pile(
             [
                 (self.headerTitle),
                 (self.userInput)
             ]
         )
-        self.mainWidget: urwid.Filler = Filler(self.pile, valign='middle')
-        self.mainLoop: urwid.MainLoop = self.runLoop(self.mainWidget)
+        self.mainWidget: urwid.Filler = Filler(self.pile, valign='middle') 
+        self.mainLoop: urwid.MainLoop = runLoop(self.mainWidget, self.palette, screen=self.screen)
+
