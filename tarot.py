@@ -8,6 +8,10 @@
     this will connect all of the utils!
 """
 
+"""
+Add type write animation every 2 seconds in the main menu for the "tip"
+"""
+
 from utils.Exceptions import *
 from utils.Cards import *
 from utils.Placements import *

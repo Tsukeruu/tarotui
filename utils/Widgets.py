@@ -14,7 +14,7 @@ import urwid
 
 from dataclasses import dataclass, field
 from urwid import Button, LineBox, Filler, Pile, Text, Edit, MainLoop, Padding
-from typing import List, Dict, Union, Tuple, Any
+from typing import List, Dict, Union, Tuple, Any, ClassVar
 from utils.Colors import ColorInit
 from utils.StaticMethods import runLoop, applyPalette 
 
@@ -23,19 +23,12 @@ import subprocess
 import ollama
 
 class RoundBox(LineBox):
-    def __init__(self,widget: Any, title: str, title_align: str) -> None:
+    def __init__(self,widget: Any, title: str, title_align: str, borders: Dict[str]) -> None:
         super().__init__(
                 widget,
                 title=title,
                 title_align=title_align,
-                tlcorner='╭',
-                tline='─',
-                bline='─',
-                trcorner='╮',
-                rline='│',
-                lline='│',
-                blcorner='╰',
-                brcorner='╯'
+                **borders
             )
 
 @dataclass
@@ -47,19 +40,33 @@ class necessaryData(ColorInit):
 """
     inputWidth: int = 55
     inputTitle: str = "Ask the fates"
+    borderCorner: Dict[str] = field(default_factory=lambda: {
+            "tlcorner": '╭',
+            "tline": '─',
+            "bline": '─',
+            "trcorner": '╮',
+            "rline": '│',
+            "lline": '│',
+            "blcorner": '╰',
+            "brcorner": '╯'
+        })
     screen: urwid.raw_display.Screen = urwid.raw_display.Screen()
 
 class widgetInit(necessaryData):
     def __init__(self) -> None:
+        super().__init__()
         self.screen.set_terminal_properties(256)
-        self.userInput: Any = applyPalette(Padding(
+        self.userInput: urwid.AttrMap = applyPalette(Padding(
                 RoundBox(
-                    Edit(caption=" > "),title=self.inputTitle,title_align='left', 
-                    ),
+                    Edit(caption=" > "),
+                    self.inputTitle,
+                    'left',
+                    self.borderCorner
+                ),
                 width=self.inputWidth, align='center'
             ),"inputBorder")
 
-        self.headerTitle: Any = applyPalette(Text(self.headerTitle, align='center'),"header")
+        self.headerTitle: urwid.AttrMap = applyPalette(Text(self.headerTitle, align='center'),"header")
         self.pile: urwid.Pile = Pile(
             [
                 (self.headerTitle),

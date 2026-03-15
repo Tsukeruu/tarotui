@@ -18,5 +18,5 @@ def runLoop(
 
 
 @staticmethod
-def applyPalette(widget: Any, paletteComponent: str) -> Any:
+def applyPalette(widget: Any, paletteComponent: str) -> urwid.AttrMap:
     return AttrMap(widget, paletteComponent)
