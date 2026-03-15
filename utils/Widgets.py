@@ -38,6 +38,7 @@ class necessaryData(ColorInit):
  █  █▀█ █▀▄ █ █  █  █ █  █
  ▀  ▀ ▀ ▀ ▀ ▀▀▀  ▀  ▀▀▀  ▀
 """
+    tipText: str = "✨ Tip: press q to quit!"
     inputWidth: int = 55
     inputTitle: str = "Ask the fates"
     borderCorner: Dict[str] = field(default_factory=lambda: {
@@ -65,12 +66,13 @@ class widgetInit(necessaryData):
                 ),
                 width=self.inputWidth, align='center'
             ),"inputBorder")
-
         self.headerTitle: urwid.AttrMap = applyPalette(Text(self.headerTitle, align='center'),"header")
+        self.tip: urwid.AttrMap = applyPalette(Text(self.tipText, align='center'),"tipText")
         self.pile: urwid.Pile = Pile(
             [
                 (self.headerTitle),
-                (self.userInput)
+                (self.userInput),
+                (self.tip)
             ]
         )
         self.mainWidget: urwid.Filler = Filler(self.pile, valign='middle') 

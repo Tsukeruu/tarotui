@@ -14,5 +14,6 @@ from urwid import AttrMap
 class ColorInit:
     palette: ClassVar[List[Tuple]] = [
             ("header", "default", "default","default","#b4befe","default"),
-            ("inputBorder","default", "default","default","#b4befe","default")
+            ("inputBorder","default", "default","default","#b4befe","default"),
+            ("tipText","default","default","default","#9399b2","default")
         ]
