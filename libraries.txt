@@ -1,0 +1,7 @@
+markdown-it-py==4.2.0
+mdurl==0.1.2
+prompt_toolkit==3.0.52
+Pygments==2.20.0
+rich==15.0.0
+terminaltexteffects==0.14.2
+wcwidth==0.7.0
