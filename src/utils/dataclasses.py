@@ -1,6 +1,8 @@
 from dataclasses import dataclass
 from typing import Dict, List, Tuple, Any
+
 from prompt_toolkit.styles import Style
+from prompt_toolkit import PromptSession
 
 import terminaltexteffects
 import rich
@@ -20,6 +22,7 @@ class initScreenData:
     ptk_style: Style.from_dict
     api_endpoint: str
     persona: str
+    session: prompt_toolkit.PromptSession
 
 
     

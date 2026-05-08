@@ -64,10 +64,12 @@ Require echo
 Set Shell "fish"
 Set FontSize 20
 Set Width 1200
-Set Height 900
+Set Height 800
 Set Theme "Catppuccin Mocha"
 Set WindowBar Colorful
-Set Framerate 60
+Set Margin 20
+Set MarginFill "#674EFF"
+Set BorderRadius 10
 
 Type "source ~/tarotui/src/venv/bin/activate.fish" Enter
 Type "python tarot.py" Sleep 500ms  Enter
