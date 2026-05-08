@@ -17,6 +17,9 @@ import rich
 class initScreenData:
     console: rich.Console 
     effect: terminaltexteffects.effects.effect_laseretch.LaserEtch
-    ptk_style: Style.from_dict 
+    ptk_style: Style.from_dict
+    api_endpoint: str
+    persona: str
+
 
     

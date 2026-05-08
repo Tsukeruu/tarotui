@@ -72,4 +72,7 @@ Set Framerate 60
 Type "source ~/tarotui/src/venv/bin/activate.fish" Enter
 Type "python tarot.py" Sleep 500ms  Enter
 
-Sleep 15s
+Sleep 7s
+Type "Will i get rich by 2026?" Sleep 500ms Enter
+
+Sleep 43s
