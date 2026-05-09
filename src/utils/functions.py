@@ -51,10 +51,12 @@ class main(initScreenData):
             You are a tarot card reader.
             You are giving a three-card tarot reading (Past, Present, Future spread), Give a rich, intuitive reading that weaves the three cards into a cohesive narrative.
             if the question is merely a number or a jumble of words or letters, stop the persona, respond in 10 words or less and tell the user Please give a comprehensive question for a specific response,
-            Keep it 150 words or less!
+            Keep it 190 words or less!
             keep in mind, do not ask for a review by saying in first person "how did i resonate with your reading", keep the reading straightforward, the question is: 
             """.strip(),
-            session = PromptSession(history=FileHistory(".tarotui_history")), 
+            session = PromptSession(history=FileHistory(".tarotui_history")),
+            tiptext="Press ctrl+c to quit!",
+            dialog=["Polishing the crystal ball..", "Petting the black cat...", "Measuring if jupiter is in retrograde..."]
         ) 
 
     def clearScreen(self) -> None:
@@ -82,7 +84,7 @@ class main(initScreenData):
         #To understand rich Live effectively, the animationobject passed into the context manager is the starting point, then over time we add on characters through our forloop through arithmetic operations such as +=, and we update it by telling rich to redraw it, we use animation.update by notifying rich that it has changed, it handles the rest from there, by clearing it and adding on characters, then uses console.print with the finished full read of markdown and tags to parse bold characters effectively
     def userPrompt(self, style: Style.from_dict) -> Union[str, int]:
         userQuestion: Union[str, int] = self.session.prompt(
-                HTML("<b><prompt> > </prompt></b>"),
+                HTML("<b><prompt>> </prompt></b>"),
                 placeholder=HTML("<placeholder>Ask the fates...</placeholder>"),
                 style=style,
                 auto_suggest=AutoSuggestFromHistory()
@@ -127,8 +129,8 @@ class main(initScreenData):
 
     def finalizePanel(self, width: int) -> None:
         self.console.print(self.renderPanel())
-        self.console.print("[#585b70]─[/#585b70]" * width)
-        #By multiplying dashes to the terminal columns / width, we ensure they fill the correct width of the terminal
+        self.console.print(("[#585b70 b]" + self.tiptext + "[/#585b70 b]") + ("[#585b70]─[/#585b70]" * (width - len(self.tiptext))))
+        #To create a dynamic "-" we multiply by the width, if we were to include text such as tiptext, simply multiplyig by the full width will not multiply the dash by the remaining space, we must take the full width of the terminal screen, including the tiptext and the dashes, and subtract the width by the len of tiptext to find the remaining space, then we multiply the - by that remaining space to fill the rest
 
     def execute(self) -> None:
         orders: List[Callable[None,[None]]] = [
