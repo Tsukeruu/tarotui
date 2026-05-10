@@ -58,11 +58,11 @@ class main(initScreenData):
             file_directory=Path(__file__).parent,
             situation = ["The past", "The present", "The future"],
             boxContent = """
-            [#cba6f7 b]Tarotui[/#cba6f7 b]: Terminal Tarot
-            1. Ask [#cba6f7 b]straightforward[/#cba6f7 b] questions.
-            2. Powered by [#cba6f7 b]ollama[/#cba6f7 b] (intelligence may be limited).
-            3. Responses might misinterpret or be inaccurate.
-            4. [#cba6f7 b]Enjoy![/#cba6f7 b]
+[#cba6f7 b]Tarotui[/#cba6f7 b]: Terminal Tarot
+1. Ask [#cba6f7 b]straightforward[/#cba6f7 b] questions.
+2. Powered by [#cba6f7 b]ollama[/#cba6f7 b] (intelligence may be limited).
+3. Responses might misinterpret or be inaccurate.
+4. [#cba6f7 b]Enjoy![/#cba6f7 b]
             """
         ) 
     
@@ -165,9 +165,19 @@ class main(initScreenData):
                 sleep(2)
             return new_list_of_cards
 
+    def displayResults(self, shuffledDeck: List[Tuple[str, Union[str, int, Suit, Arcana]]], height: int) -> None:
+        calculatedHeight = int((height - 4) * (1/3))
+        self.console.print("[#b7bdf8 b]SHUFFLE RESULT[/#b7bdf8 b]")
+        self.console.print(("\n" * calculatedHeight) + "[#b7bdf8 b]CARD ONE[/#b7bdf8 b]")
+        self.console.print(("\n" * calculatedHeight) + "[#b7bdf8 b]CARD TWO[/#b7bdf8 b]")
+        self.console.print(("\n" * calculatedHeight) + "[#b7bdf8 b]CARD THREE[/#b7bdf8 b]")
+
+
     def processQuestion(self, question: Union[str, int]) -> None:
         #Process user's question here  
         self.deck_data: List[Tuple[str, Union[str, int, Enum]]] = self.shuffle_spinner(self.return_deck(f"{self.file_directory}/tarot_data.json"))
+        self.clearScreen()
+        self.displayResults(None, get_terminal_size().lines)
         """try:
             ollama_response: str = self.response_spinner(question)
         except requests.exceptions.RequestException:
@@ -176,7 +186,6 @@ class main(initScreenData):
             return
         self.clearScreen() 
         self.typeWrite(ollama_response, 0.01)"""
-        #Next stop, add custom errors and "click any key to continue" at the end of the type write
 
     def renderPanel(self) -> rich.panel.Panel:
         mainPanel: rich.panel.Panel = Panel(self.boxContent.strip(), expand = False, title = "[b]About[/b]", title_align = "left", border_style = "#b4befe")
