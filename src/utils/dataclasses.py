@@ -7,7 +7,6 @@ from prompt_toolkit import PromptSession
 
 import terminaltexteffects
 import rich
-import json
 
 """
  ▀▄    ▀█▀ █▀█ █▀▄ █▀█ ▀█▀ █ █ ▀█▀
@@ -16,19 +15,6 @@ import json
 - This is the dataclass script
 - This plays a crucial part in the hierachy by providing necessary data for order of execution
 """
-
-@dataclass()
-class initScreenData:
-    console: rich.Console 
-    effect: terminaltexteffects.effects.effect_laseretch.LaserEtch
-    ptk_style: Style.from_dict
-    api_endpoint: str
-    persona: str
-    session: prompt_toolkit.PromptSession
-    tiptext: str
-    dialog: List[str]
-    dialog_colors: List[str]
-    file_directory: str
 
 #An ENUM typically used in regular classes (not dataclasses), is a way to explicity tell pyhon to use either of the choices, its like letting the user choose a choice, an enum allows for limited user options nad just by the given ones
 
@@ -42,6 +28,22 @@ class Suit(Enum):
     SWORDS: str = "Swords"
     PENTACLES: str = "Pentacles"
     NONE: str = "None"
+
+
+@dataclass()
+class initScreenData:
+    console: rich.Console 
+    effect: terminaltexteffects.effects.effect_laseretch.LaserEtch
+    ptk_style: Style.from_dict
+    api_endpoint: str
+    session: prompt_toolkit.PromptSession
+    tiptext: str
+    dialog: List[str]
+    dialog_colors: List[str]
+    file_directory: str
+    situation: List[str]
+    boxContent: str
+
 
 #In a card, being a major arcana means having suit set to NONE which is one of the awesome features of an enum, a minor arcana has a suit set to Suit[0:3], a major arcana has 22 cards whereas a minor arcana has 56 cards
 

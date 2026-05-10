@@ -50,19 +50,20 @@ class main(initScreenData):
                   "placeholder": "#585b70"
                 }
             ),
-            api_endpoint = "http://localhost:11434/api/generate",
-            persona = """
-            You are a tarot card reader.
-            You are giving a three-card tarot reading (Past, Present, Future spread), Give a rich, intuitive reading that weaves the three cards into a cohesive narrative.
-            if the question is merely a number or a jumble of words or letters, stop the persona, respond in 10 words or less and tell the user Please give a comprehensive question for a specific response,
-            Keep it 190 words or less!
-            keep in mind, do not ask for a review by saying in first person "how did i resonate with your reading", keep the reading straightforward, the question is: 
-            """.strip(),
+            api_endpoint = "http://localhost:11434/api/generate", 
             session = PromptSession(history=FileHistory(".tarotui_history")),
             tiptext="Press ctrl+c to quit!",
             dialog=["Polishing the crystal ball..", "Petting the black cat...", "Measuring if jupiter is in retrograde..."],
             dialog_colors=["#f5a97f", "#a6da95", "#c6a0f6"],
-            file_directory=Path(__file__).parent
+            file_directory=Path(__file__).parent,
+            situation = ["The past", "The present", "The future"],
+            boxContent = """
+            [#cba6f7 b]Tarotui[/#cba6f7 b]: Terminal Tarot
+            1. Ask [#cba6f7 b]straightforward[/#cba6f7 b] questions.
+            2. Powered by [#cba6f7 b]ollama[/#cba6f7 b] (intelligence may be limited).
+            3. Responses might misinterpret or be inaccurate.
+            4. [#cba6f7 b]Enjoy![/#cba6f7 b]
+            """
         ) 
     
     def return_deck(self, json_file: str) -> List[Card]:
@@ -116,11 +117,11 @@ class main(initScreenData):
             )
         return userQuestion
 
-    def response_spinner(self, question: str) -> str: 
+    def response_spinner(self, question: str, shuffle: List[Tuple[str, Union[str, int, Suit, Arcana]]]) -> str: 
         with self.console.status("[#a6e3a1 b]Performing HTTP POST request to ollama[/#a6e3a1 b]",spinner="line") as status: 
             payload: Dict[str, Union[str, bool]] = {
-                "model": "llama3.2",
-                "prompt": self.persona + question,
+                "model": "tarotui",
+                "prompt": f"The question is {question} and the 3 cards are: {shuffle}",
                 "stream": False
             }
             json_response = requests.post(self.api_endpoint, json=payload)
@@ -136,14 +137,23 @@ class main(initScreenData):
             new_list_of_cards: List[Card] = []
             meanings: List[str] = []
             bool_meanings: List[bool] = []
-            for card in list_of_cards:
+            for card, situation in zip(list_of_cards, self.situation):
                 reversed_meaning: List[bool] = choice([True, False]) 
                 if reversed_meaning:
                     meaning: str = card.meaning_reversed
                 else:
                     meaning: str = card.meaning_upright
                 new_list_of_cards.append(
-                    (card.name, card.number, card.arcana, card.suit, card.keywords, meaning, card.element)
+                    (
+                        situation,
+                        card.name,
+                        card.number,
+                        card.arcana,
+                        card.suit,
+                        card.keywords,
+                        meaning,
+                        card.element,
+                    )
                 ) 
                 meanings.append(meaning)
                 bool_meanings.append(reversed_meaning)
@@ -168,13 +178,7 @@ class main(initScreenData):
         #Next stop, add custom errors and "click any key to continue" at the end of the type write
 
     def renderPanel(self) -> rich.panel.Panel:
-        mainPanel: rich.panel.Panel = Panel("""
-[#cba6f7 b]Tarotui[/#cba6f7 b]: Terminal Tarot
-1. Ask [#cba6f7 b]straightforward[/#cba6f7 b] questions.
-2. Powered by [#cba6f7 b]ollama[/#cba6f7 b] (intelligence may be limited).
-3. Responses might misinterpret or be inaccurate.
-4. [#cba6f7 b]Enjoy![/#cba6f7 b]
-    """.strip(), expand = False, title = "[b]About[/b]", title_align = "left", border_style = "#b4befe")
+        mainPanel: rich.panel.Panel = Panel(self.boxContent.strip(), expand = False, title = "[b]About[/b]", title_align = "left", border_style = "#b4befe")
         return mainPanel
 
     def finalizePanel(self, width: int) -> None:
