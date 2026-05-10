@@ -51,7 +51,7 @@ class main(initScreenData):
                 }
             ),
             api_endpoint = "http://localhost:11434/api/generate", 
-            session = PromptSession(history=FileHistory(".tarotui_history")),
+            session = PromptSession(history=FileHistory(f"{Path(__file__).parent}/.tarotui_history")),
             tiptext="Press ctrl+c to quit!",
             dialog=["Polishing the crystal ball..", "Petting the black cat...", "Measuring if jupiter is in retrograde..."],
             dialog_colors=["#f5a97f", "#a6da95", "#c6a0f6"],
@@ -91,6 +91,7 @@ class main(initScreenData):
     def effectSettings(self, effect: terminaltexteffects.effects.effect_laseretch.LaserEtch):
         effect.effect_config.etch_speed: int = 1
         effect.effect_config.final_gradient_stops: Tuple[Color[str]] = (Color("#89b4fa"), Color("#cba6f7"))
+
     def drawAscii(self) -> None:
         with self.effect.terminal_output() as output:
             self.effectSettings(self.effect)
