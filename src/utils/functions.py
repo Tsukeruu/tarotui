@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
-from .dataclasses import initScreenData
+from .dataclasses import initScreenData, Card, Arcana, Suit
 from typing import Dict, List, Any, Tuple, ClassVar
+from enum import Enum
 
 from rich.panel import Panel
 from rich.console import Console
@@ -13,6 +14,9 @@ from os import system
 from shutil import get_terminal_size
 from sys import stdout
 from time import sleep
+from pathlib import Path
+from random import choice, sample
+from json import load
 
 from prompt_toolkit import prompt
 from prompt_toolkit.styles import Style
@@ -56,8 +60,29 @@ class main(initScreenData):
             """.strip(),
             session = PromptSession(history=FileHistory(".tarotui_history")),
             tiptext="Press ctrl+c to quit!",
-            dialog=["Polishing the crystal ball..", "Petting the black cat...", "Measuring if jupiter is in retrograde..."]
+            dialog=["Polishing the crystal ball..", "Petting the black cat...", "Measuring if jupiter is in retrograde..."],
+            dialog_colors=["#f5a97f", "#a6da95", "#c6a0f6"],
+            file_directory=Path(__file__).parent
         ) 
+    
+    def return_deck(self, json_file: str) -> List[Card]:
+        with open(json_file, 'r') as file:
+            json_data = load(file)
+
+        deck = [
+            Card(
+                name=item["name"],
+                number=item["number"],
+                arcana=Arcana(item["arcana"]),
+                suit=Suit(item["suit"]),
+                keywords=item["keywords"],
+                meaning_upright=item["meaning_upright"],
+                meaning_reversed=item["meaning_reversed"],
+                element=item["element"]
+            )
+            for item in json_data
+        ]
+        return deck
 
     def clearScreen(self) -> None:
         system("clear")
@@ -91,7 +116,7 @@ class main(initScreenData):
             )
         return userQuestion
 
-    def spinner(self, question: str) -> str: 
+    def response_spinner(self, question: str) -> str: 
         with self.console.status("[#a6e3a1 b]Performing HTTP POST request to ollama[/#a6e3a1 b]",spinner="line") as status: 
             payload: Dict[str, Union[str, bool]] = {
                 "model": "llama3.2",
@@ -104,18 +129,43 @@ class main(initScreenData):
             status.update("[#a6e3a1 b]Finishing up...[/#a6e3a1 b]")
             sleep(1.5)  
             return "[b]" + json_response["response"] + "[/b]"
+    
+    def shuffle_spinner(self, deck: List[Card]) -> List[Tuple[str, Union[str, int, bool, Arcana, Suit]]]: 
+        with self.console.status("[#eed49f b]Shuffling the deck...[/#eed49f b]",spinner="line", spinner_style="bold #eed49f") as status:
+            list_of_cards: List[Card] = sample(deck, 3)
+            new_list_of_cards: List[Card] = []
+            meanings: List[str] = []
+            bool_meanings: List[bool] = []
+            for card in list_of_cards:
+                reversed_meaning: List[bool] = choice([True, False]) 
+                if reversed_meaning:
+                    meaning: str = card.meaning_reversed
+                else:
+                    meaning: str = card.meaning_upright
+                new_list_of_cards.append(
+                    (card.name, card.number, card.arcana, card.suit, card.keywords, meaning, card.element)
+                ) 
+                meanings.append(meaning)
+                bool_meanings.append(reversed_meaning)
+            total_meanings: List[Tuple[bool, str]] = list(zip(bool_meanings,meanings))
+            sleep(2)
+            for message, color in zip(self.dialog, self.dialog_colors):
+                status.update(f"[{color} b]{message}[/{color} b]", spinner_style=f"{color} bold")
+                sleep(2)
+            return new_list_of_cards
 
     def processQuestion(self, question: Union[str, int]) -> None:
-        #Process user's question here 
-        try:
-            ollama_response: str = self.spinner(question)
+        #Process user's question here  
+        self.deck_data: List[Tuple[str, Union[str, int, Enum]]] = self.shuffle_spinner(self.return_deck(f"{self.file_directory}/tarot_data.json"))
+        """try:
+            ollama_response: str = self.response_spinner(question)
         except requests.exceptions.RequestException:
-            self.console.print("[#f38ba8 b][ㄨ] A severe post request error has occured![/#f38ba8 b]") 
+            self.console.print("[#f38ba8 b][ㄨ] A severe post request error has occured![/#f38ba8 b]")
             self.console.print_exception(show_locals=True)
             return
         self.clearScreen() 
-        self.typeWrite(ollama_response, 0.01)
-        #Next stop, add autocompletion from history using ptk, and add custom errors and "click any key to continue" at the end of the type write
+        self.typeWrite(ollama_response, 0.01)"""
+        #Next stop, add custom errors and "click any key to continue" at the end of the type write
 
     def renderPanel(self) -> rich.panel.Panel:
         mainPanel: rich.panel.Panel = Panel("""

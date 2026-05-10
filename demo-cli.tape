@@ -75,6 +75,6 @@ Type "source ~/tarotui/src/venv/bin/activate.fish" Enter
 Type "python tarot.py" Sleep 500ms  Enter
 
 Sleep 7s
-Type "Will i get rich by 2026?" Sleep 500ms Enter
+Type "Is my linux hyprland setup going to be amazing in the foreseeable future" Sleep 500ms Enter
 
-Sleep 43s
+Sleep 10s

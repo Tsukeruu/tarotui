@@ -7,6 +7,7 @@ from prompt_toolkit import PromptSession
 
 import terminaltexteffects
 import rich
+import json
 
 """
  ▀▄    ▀█▀ █▀█ █▀▄ █▀█ ▀█▀ █ █ ▀█▀
@@ -26,12 +27,14 @@ class initScreenData:
     session: prompt_toolkit.PromptSession
     tiptext: str
     dialog: List[str]
+    dialog_colors: List[str]
+    file_directory: str
 
 #An ENUM typically used in regular classes (not dataclasses), is a way to explicity tell pyhon to use either of the choices, its like letting the user choose a choice, an enum allows for limited user options nad just by the given ones
 
 class Arcana(Enum):
-    MAJOR: str = "MAJOR ARCANA"
-    MINOR: str = "MINOR ARCANA"
+    MAJOR: str = "Major Arcana"
+    MINOR: str = "Minor Arcana"
 
 class Suit(Enum):
     WANDS: str = "Wands"
@@ -54,4 +57,4 @@ class Card:
     element: Optional[str] = None
 
 
-    
+

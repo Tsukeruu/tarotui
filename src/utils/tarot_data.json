@@ -1,0 +1,805 @@
+[
+  {
+    "name": "The Fool",
+    "number": 0,
+    "arcana": "Major Arcana",
+    "suit": "None",
+    "keywords": ["Beginnings", "Innocence", "Leap of faith"],
+    "meaning_upright": "You are at the start of a new journey",
+    "meaning_reversed": "You are being reckless or hesitating too much",
+    "element": "Air"
+  },
+  {
+    "name": "The Magician",
+    "number": 1,
+    "arcana": "Major Arcana",
+    "suit": "None",
+    "keywords": ["Action", "Manifestation", "Skill"],
+    "meaning_upright": "You have everything you need to succeed. It marks a time for action, using your intellect and creative power to turn ideas into reality",
+    "meaning_reversed": "Power is being misused or redirected, it signals a conman, energy, and manipulation for selfish gain",
+    "element": "Air"
+  },
+  {
+    "name": "The High Priestess",
+    "number": 2,
+    "arcana": "Major Arcana",
+    "suit": "None",
+    "keywords": ["Intuition", "Mystery", "Secrets"],
+    "meaning_upright": "A call to look inward and trust your gut feelings. It represents a time for reflections and spiritual growth",
+    "meaning_reversed": "Disconnected from intuition, superficiality, secrets being revealed, or ignoring your inner voice",
+    "element": "Water"
+  },
+  {
+    "name": "The Empress",
+    "number": 3,
+    "arcana": "Major Arcana",
+    "suit": "None",
+    "keywords": ["Fertility, Abundance, nature, creativity"],
+    "meaning_upright": "A powerful sign of growth and prosperity, it suggests connecting with your senses, creating something new, or experiencing a period of harvest where efforts bloom",
+    "meaning_reversed": "Creative blocks, dependence on others, feelings of lack and smothering energy",
+    "element": "Earth"
+  },
+  {
+    "name": "The Emperor",
+    "number": 4,
+    "arcana": "Major Arcana",
+    "suit": "None",
+    "keywords": ["Authority", "Structure", "Control", "Fatherhood"],
+    "meaning_upright": "Embrace leadership and strategic planning. This card signifies a time for discipline, order, and establishing solid foundations to achieve your goals.",
+    "meaning_reversed": "Beware of tyranny, rigidity, or an abuse of power. It can indicate a lack of discipline, losing control of a situation, or being stifled by an overbearing authority figure.",
+    "element": "Fire"
+  },
+  {
+    "name": "The Hierophant",
+    "number": 5,
+    "arcana": "Major Arcana",
+    "suit": "None",
+    "keywords": ["Tradition", "Education", "Conformity", "Spirituality"],
+    "meaning_upright": "Follow established traditions or seek mentorship within structured institutions. It represents formal education, religious or spiritual guidance, and sticking to the rules.",
+    "meaning_reversed": "You are encouraged to question the status quo and forge your own path. This suggests rebellion against restrictive norms, unconventional beliefs, or rejecting societal expectations.",
+    "element": "Earth"
+  },
+  {
+    "name": "The Lovers",
+    "number": 6,
+    "arcana": "Major Arcana",
+    "suit": "None",
+    "keywords": ["Love", "Harmony", "Relationships", "Choices"],
+    "meaning_upright": "Focus on meaningful connections and aligning your actions with your core values. It often signals a significant partnership or a crossroad requiring a heartfelt choice.",
+    "meaning_reversed": "Indicates disharmony, imbalance, or a misalignment of values within a relationship. You may be facing inner conflict or struggling to make a decision that feels authentic.",
+    "element": "Air"
+  },
+  {
+    "name": "The Chariot",
+    "number": 7,
+    "arcana": "Major Arcana",
+    "suit": "None",
+    "keywords": ["Willpower", "Determination", "Victory", "Control"],
+    "meaning_upright": "Success is achieved through focus and sheer willpower. You are overcoming obstacles and moving forward with confidence and discipline to reach your destination.",
+    "meaning_reversed": "Things may be spinning out of control or lacking clear direction. It warns against aggression, being stalled by obstacles, or pushing too hard without a cohesive plan.",
+    "element": "Water"
+  },
+  {
+    "name": "Strength",
+    "number": 8,
+    "arcana": "Major Arcana",
+    "suit": "None",
+    "keywords": ["Courage", "Patience", "Compassion", "Inner Strength"],
+    "meaning_upright": "Harness your inner power and emotional resilience to handle challenges gracefully. It emphasizes using soft power and persuasion rather than brute force.",
+    "meaning_reversed": "You may be experiencing self-doubt, raw emotion, or a lack of self-control. It suggests feeling weak or being overwhelmed by your own impulses and insecurities.",
+    "element": "Fire"
+  },
+  {
+    "name": "The Hermit",
+    "number": 9,
+    "arcana": "Major Arcana",
+    "suit": "None",
+    "keywords": ["Solitude", "Introspection", "Seeking Truth", "Guidance"],
+    "meaning_upright": "A time for pulling back from the world to focus on self-discovery. Seek wisdom from within or look for a mentor who can light the way during your inward journey.",
+    "meaning_reversed": "Signals isolation, loneliness, or being too withdrawn from society. You may be over-analyzing a situation or ignoring the practical realities of the world around you.",
+    "element": "Earth"
+  },
+  {
+    "name": "Wheel of Fortune",
+    "number": 10,
+    "arcana": "Major Arcana",
+    "suit": "None",
+    "keywords": ["Change", "Cycles", "Luck", "Destiny"],
+    "meaning_upright": "Life is in a state of flux, bringing new opportunities and a change in fortune. Understand that things are moving in your favor as part of a larger cycle.",
+    "meaning_reversed": "A period of bad luck or resistance to change. It suggests you are clinging to control while external forces or unexpected setbacks cause temporary delays.",
+    "element": "Fire"
+  },
+  {
+    "name": "Justice",
+    "number": 11,
+    "arcana": "Major Arcana",
+    "suit": "None",
+    "keywords": ["Fairness", "Truth", "Cause and Effect", "Law"],
+    "meaning_upright": "The most fair outcome will prevail. It signifies legal matters, accountability, and the need to weigh your options carefully before making a balanced decision.",
+    "meaning_reversed": "Suggests dishonesty, unfairness, or a refusal to take responsibility for your actions. It can indicate a biased situation or a delay in a legal resolution.",
+    "element": "Air"
+  },
+  {
+    "name": "The Hanged Man",
+    "number": 12,
+    "arcana": "Major Arcana",
+    "suit": "None",
+    "keywords": ["Perspective", "Surrender", "Sacrifice", "Waiting"],
+    "meaning_upright": "A period of suspension where you must let go of old patterns. By surrendering to the wait, you gain a fresh perspective that was previously hidden.",
+    "meaning_reversed": "Feeling stalled or stuck without any benefit. It can indicate resistance to necessary sacrifices, stalling for the sake of it, or being unable to see a new point of view.",
+    "element": "Water"
+  },
+  {
+    "name": "Death",
+    "number": 13,
+    "arcana": "Major Arcana",
+    "suit": "None",
+    "keywords": ["Ending", "Transition", "Elimination", "Transformation"],
+    "meaning_upright": "A major phase of your life is ending to make room for something new. It is a card of profound transformation and the clearing away of the old.",
+    "meaning_reversed": "Resistance to change or the inability to let go of the past. You may be prolonging a painful ending or fearing the rebirth that follows a necessary conclusion.",
+    "element": "Water"
+  },
+  {
+    "name": "Temperance",
+    "number": 14,
+    "arcana": "Major Arcana",
+    "suit": "None",
+    "keywords": ["Balance", "Moderation", "Patience", "Purpose"],
+    "meaning_upright": "Practice moderation and find the middle ground. This card encourages you to remain calm and blend different aspects of your life into a harmonious whole.",
+    "meaning_reversed": "Reflects imbalance, excess, or a lack of long-term vision. You may be experiencing discord or rushing into decisions without considering the consequences.",
+    "element": "Fire"
+  },
+  {
+    "name": "The Devil",
+    "number": 15,
+    "arcana": "Major Arcana",
+    "suit": "None",
+    "keywords": ["Addiction", "Bondage", "Materialism", "Shadow Self"],
+    "meaning_upright": "You are feeling trapped by your own desires, habits, or negative beliefs. It highlights the need to confront the things that hold you back from true freedom.",
+    "meaning_reversed": "Breaking free from limitations and shedding unhealthy attachments. You are reclaiming your power and moving away from a situation that once controlled you.",
+    "element": "Earth"
+  },
+  {
+    "name": "The Tower",
+    "number": 16,
+    "arcana": "Major Arcana",
+    "suit": "None",
+    "keywords": ["Upheaval", "Disaster", "Sudden Change", "Revelation"],
+    "meaning_upright": "A sudden, jarring shift that breaks down existing structures. While chaotic, it destroys false foundations to reveal the truth and allow for total rebuilding.",
+    "meaning_reversed": "Avoiding a necessary crisis or delaying an inevitable breakdown. It can also signify a less severe disruption or the fear of a much-needed change.",
+    "element": "Fire"
+  },
+  {
+    "name": "The Star",
+    "number": 17,
+    "arcana": "Major Arcana",
+    "suit": "None",
+    "keywords": ["Hope", "Inspiration", "Healing", "Renewal"],
+    "meaning_upright": "A sense of peace and renewed faith after a period of struggle. It brings hope, spiritual insight, and the promise that things are finally looking up.",
+    "meaning_reversed": "Feelings of hopelessness, lack of inspiration, or disappointment. You may be struggling to find meaning or feeling disconnected from your dreams.",
+    "element": "Air"
+  },
+  {
+    "name": "The Moon",
+    "number": 18,
+    "arcana": "Major Arcana",
+    "suit": "None",
+    "keywords": ["Illusion", "Fear", "Anxiety", "Subconscious"],
+    "meaning_upright": "Things are not what they seem. Trust your intuition to navigate through confusion, hidden truths, and the fluctuating emotions of the subconscious mind.",
+    "meaning_reversed": "Secrets are coming to light and the fog is beginning to clear. It suggests overcoming anxiety or finally recognizing an illusion for what it really is.",
+    "element": "Water"
+  },
+  {
+    "name": "The Sun",
+    "number": 19,
+    "arcana": "Major Arcana",
+    "suit": "None",
+    "keywords": ["Joy", "Success", "Vitality", "Confidence"],
+    "meaning_upright": "A time of great happiness, energy, and clarity. Everything is going right, and your radiant confidence is attracting success in all areas of your life.",
+    "meaning_reversed": "You may be feeling temporarily blocked or overly optimistic. It can indicate a lack of enthusiasm or a success that is slightly dampened by minor setbacks.",
+    "element": "Fire"
+  },
+  {
+    "name": "Judgement",
+    "number": 20,
+    "arcana": "Major Arcana",
+    "suit": "None",
+    "keywords": ["Reflection", "Reckoning", "Awakening", "Absolution"],
+    "meaning_upright": "A call to review your life and make significant changes. It represents a spiritual awakening, finding your true purpose, and answering for your past.",
+    "meaning_reversed": "Self-doubt, ignoring a calling, or being overly critical of yourself. You may be stuck in the past or refusing to learn the lessons necessary for your growth.",
+    "element": "Fire"
+  },
+  {
+    "name": "The World",
+    "number": 21,
+    "arcana": "Major Arcana",
+    "suit": "None",
+    "keywords": ["Completion", "Integration", "Travel", "Full Circle"],
+    "meaning_upright": "You have achieved your goals and completed a major life cycle. It signifies wholeness, success, and the successful integration of all your experiences.",
+    "meaning_reversed": "A delay in reaching the finish line or a feeling of incompletion. You may be lacking closure or struggling to cross the final hurdle to success.",
+    "element": "Earth"
+  },
+  {
+    "name": "Ace of Wands",
+    "number": 1,
+    "arcana": "Minor Arcana",
+    "suit": "Wands",
+    "keywords": ["Inspiration", "New Opportunity", "Growth"],
+    "meaning_upright": "A spark of inspiration or a new creative venture is beginning.",
+    "meaning_reversed": "Delays, lack of motivation, or a creative block.",
+    "element": "Fire"
+  },
+  {
+    "name": "Two of Wands",
+    "number": 2,
+    "arcana": "Minor Arcana",
+    "suit": "Wands",
+    "keywords": ["Planning", "Decisions", "Discovery"],
+    "meaning_upright": "You are taking the first steps toward a long-term goal.",
+    "meaning_reversed": "Fear of the unknown or lack of planning.",
+    "element": "Fire"
+  },
+  {
+    "name": "Three of Wands",
+    "number": 3,
+    "arcana": "Minor Arcana",
+    "suit": "Wands",
+    "keywords": ["Expansion", "Foresight", "Overseas"],
+    "meaning_upright": "Your efforts are starting to pay off; growth is on the horizon.",
+    "meaning_reversed": "Delays in plans or disappointment in results.",
+    "element": "Fire"
+  },
+  {
+    "name": "Four of Wands",
+    "number": 4,
+    "arcana": "Minor Arcana",
+    "suit": "Wands",
+    "keywords": ["Celebration", "Home", "Harmony"],
+    "meaning_upright": "A time of joy, stability, and successful milestones.",
+    "meaning_reversed": "Conflict at home or a cancelled celebration.",
+    "element": "Fire"
+  },
+  {
+    "name": "Five of Wands",
+    "number": 5,
+    "arcana": "Minor Arcana",
+    "suit": "Wands",
+    "keywords": ["Competition", "Conflict", "Disagreement"],
+    "meaning_upright": "Minor struggles or healthy competition are pushing you to improve.",
+    "meaning_reversed": "Avoiding conflict or internal tension.",
+    "element": "Fire"
+  },
+  {
+    "name": "Six of Wands",
+    "number": 6,
+    "arcana": "Minor Arcana",
+    "suit": "Wands",
+    "keywords": ["Victory", "Success", "Public Recognition"],
+    "meaning_upright": "You are receiving praise and acknowledgment for your achievements.",
+    "meaning_reversed": "Private achievement or a fall from grace.",
+    "element": "Fire"
+  },
+  {
+    "name": "Seven of Wands",
+    "number": 7,
+    "arcana": "Minor Arcana",
+    "suit": "Wands",
+    "keywords": ["Defense", "Perseverance", "Challenge"],
+    "meaning_upright": "Standing your ground against opposition to protect your progress.",
+    "meaning_reversed": "Giving up or being overwhelmed by pressure.",
+    "element": "Fire"
+  },
+  {
+    "name": "Eight of Wands",
+    "number": 8,
+    "arcana": "Minor Arcana",
+    "suit": "Wands",
+    "keywords": ["Speed", "Action", "Air Travel"],
+    "meaning_upright": "Rapid progress and sudden news; things are moving quickly.",
+    "meaning_reversed": "Delays, frustration, or moving too fast.",
+    "element": "Fire"
+  },
+  {
+    "name": "Nine of Wands",
+    "number": 9,
+    "arcana": "Minor Arcana",
+    "suit": "Wands",
+    "keywords": ["Resilience", "Persistence", "Last Stand"],
+    "meaning_upright": "You are tired but must push through the final hurdle.",
+    "meaning_reversed": "Exhaustion, burnout, or defensive behavior.",
+    "element": "Fire"
+  },
+  {
+    "name": "Ten of Wands",
+    "number": 10,
+    "arcana": "Minor Arcana",
+    "suit": "Wands",
+    "keywords": ["Burden", "Responsibility", "Hard Work"],
+    "meaning_upright": "Taking on too much; the weight of success is becoming heavy.",
+    "meaning_reversed": "Delegating tasks or collapsing under pressure.",
+    "element": "Fire"
+  },
+  {
+    "name": "Page of Wands",
+    "number": 11,
+    "arcana": "Minor Arcana",
+    "suit": "Wands",
+    "keywords": ["Exploration", "Excitement", "Freedom"],
+    "meaning_upright": "A message or new idea sparked by passion and curiosity.",
+    "meaning_reversed": "Lack of direction or a setback in a new project.",
+    "element": "Fire"
+  },
+  {
+    "name": "Knight of Wands",
+    "number": 12,
+    "arcana": "Minor Arcana",
+    "suit": "Wands",
+    "keywords": ["Action", "Adventure", "Impulsiveness"],
+    "meaning_upright": "Charging forward with high energy and confidence.",
+    "meaning_reversed": "Arrogance, recklessness, or burnout.",
+    "element": "Fire"
+  },
+  {
+    "name": "Queen of Wands",
+    "number": 13,
+    "arcana": "Minor Arcana",
+    "suit": "Wands",
+    "keywords": ["Confidence", "Independence", "Social Butterfly"],
+    "meaning_upright": "Courageous and charismatic leadership fueled by self-belief.",
+    "meaning_reversed": "Selfishness, jealousy, or a loss of confidence.",
+    "element": "Fire"
+  },
+  {
+    "name": "King of Wands",
+    "number": 14,
+    "arcana": "Minor Arcana",
+    "suit": "Wands",
+    "keywords": ["Visionary", "Leader", "Entrepreneur"],
+    "meaning_upright": "A natural leader who turns visions into reality with authority.",
+    "meaning_reversed": "A ruthless or overbearing leader; impulsive decisions.",
+    "element": "Fire"
+  },
+  {
+    "name": "Ace of Cups",
+    "number": 1,
+    "arcana": "Minor Arcana",
+    "suit": "Cups",
+    "keywords": ["Love", "New Emotions", "Intuition"],
+    "meaning_upright": "A flow of emotion or a new relationship is beginning.",
+    "meaning_reversed": "Emotional loss, blocked intuition, or repressed feelings.",
+    "element": "Water"
+  },
+  {
+    "name": "Two of Cups",
+    "number": 2,
+    "arcana": "Minor Arcana",
+    "suit": "Cups",
+    "keywords": ["Partnership", "Attraction", "Connection"],
+    "meaning_upright": "A deep mutual connection or reconciliation between two people.",
+    "meaning_reversed": "Breakup, disharmony, or a lack of trust in a relationship.",
+    "element": "Water"
+  },
+  {
+    "name": "Three of Cups",
+    "number": 3,
+    "arcana": "Minor Arcana",
+    "suit": "Cups",
+    "keywords": ["Celebration", "Friendship", "Collaboration"],
+    "meaning_upright": "A happy social gathering or a successful group effort.",
+    "meaning_reversed": "Overindulgence, gossip, or feeling left out from a group.",
+    "element": "Water"
+  },
+  {
+    "name": "Four of Cups",
+    "number": 4,
+    "arcana": "Minor Arcana",
+    "suit": "Cups",
+    "keywords": ["Apathy", "Contemplation", "Stagnation"],
+    "meaning_upright": "Feeling bored or missing an opportunity while looking inward.",
+    "meaning_reversed": "New interest, coming out of a slump, or choosing to engage.",
+    "element": "Water"
+  },
+  {
+    "name": "Five of Cups",
+    "number": 5,
+    "arcana": "Minor Arcana",
+    "suit": "Cups",
+    "keywords": ["Loss", "Grief", "Regret"],
+    "meaning_upright": "Focusing on what is lost rather than what remains.",
+    "meaning_reversed": "Acceptance, moving on, and finding peace after a loss.",
+    "element": "Water"
+  },
+  {
+    "name": "Six of Cups",
+    "number": 6,
+    "arcana": "Minor Arcana",
+    "suit": "Cups",
+    "keywords": ["Nostalgia", "Innocence", "Reunion"],
+    "meaning_upright": "Happy memories from the past or a childhood friend returning.",
+    "meaning_reversed": "Stuck in the past or finally ready to move toward the future.",
+    "element": "Water"
+  },
+  {
+    "name": "Seven of Cups",
+    "number": 7,
+    "arcana": "Minor Arcana",
+    "suit": "Cups",
+    "keywords": ["Choices", "Illusion", "Fantasy"],
+    "meaning_upright": "Having many options, but some may be unrealistic or deceptive.",
+    "meaning_reversed": "Clarity, commitment, and making a firm choice from many options.",
+    "element": "Water"
+  },
+  {
+    "name": "Eight of Cups",
+    "number": 8,
+    "arcana": "Minor Arcana",
+    "suit": "Cups",
+    "keywords": ["Disillusionment", "Departure", "Withdrawal"],
+    "meaning_upright": "Walking away from a situation that no longer fulfills you.",
+    "meaning_reversed": "Fear of moving on or returning to an unfulfilling situation.",
+    "element": "Water"
+  },
+  {
+    "name": "Nine of Cups",
+    "number": 9,
+    "arcana": "Minor Arcana",
+    "suit": "Cups",
+    "keywords": ["Satisfaction", "Wish Come True", "Contentment"],
+    "meaning_upright": "Emotional fulfillment and the realization of your personal desires.",
+    "meaning_reversed": "Greed, superficiality, or wishes that don't bring happiness.",
+    "element": "Water"
+  },
+  {
+    "name": "Ten of Cups",
+    "number": 10,
+    "arcana": "Minor Arcana",
+    "suit": "Cups",
+    "keywords": ["Divine Love", "Bliss", "Family Harmony"],
+    "meaning_upright": "Ultimate happiness and stability in family and relationships.",
+    "meaning_reversed": "Family conflict, a broken home, or lack of emotional harmony.",
+    "element": "Water"
+  },
+  {
+    "name": "Page of Cups",
+    "number": 11,
+    "arcana": "Minor Arcana",
+    "suit": "Cups",
+    "keywords": ["Curiosity", "Intuition", "Emotional Message"],
+    "meaning_upright": "A creative inspiration or a message regarding emotional matters.",
+    "meaning_reversed": "Emotional immaturity, creative blocks, or bad news.",
+    "element": "Water"
+  },
+  {
+    "name": "Knight of Cups",
+    "number": 12,
+    "arcana": "Minor Arcana",
+    "suit": "Cups",
+    "keywords": ["Romance", "Charm", "Idealism"],
+    "meaning_upright": "A romantic proposal or following your heart's desire with passion.",
+    "meaning_reversed": "Unrealistic expectations, moodiness, or emotional manipulation.",
+    "element": "Water"
+  },
+  {
+    "name": "Queen of Cups",
+    "number": 13,
+    "arcana": "Minor Arcana",
+    "suit": "Cups",
+    "keywords": ["Compassion", "Nurturing", "Emotional Security"],
+    "meaning_upright": "Leading with the heart and intuitive wisdom; caring for others.",
+    "meaning_reversed": "Emotional insecurity, codependency, or being overly sensitive.",
+    "element": "Water"
+  },
+
+  {
+    "name": "King of Cups",
+    "number": 14,
+    "arcana": "Minor Arcana",
+    "suit": "Cups",
+    "keywords": ["Balance", "Diplomacy", "Compassion"],
+    "meaning_upright": "Emotional mastery and keeping a level head during an emotional crisis.",
+    "meaning_reversed": "Volatility, moodiness, or using emotions to manipulate others.",
+    "element": "Water"
+  },
+  {
+    "name": "Ace of Swords",
+    "number": 1,
+    "arcana": "Minor Arcana",
+    "suit": "Swords",
+    "keywords": ["Clarity", "Breakthrough", "Mental Power"],
+    "meaning_upright": "A sharp moment of insight or the beginning of a new intellectual project.",
+    "meaning_reversed": "Confusion, clouded judgment, or a lack of clear communication.",
+    "element": "Air"
+  },
+
+  {
+    "name": "Two of Swords",
+    "number": 2,
+    "arcana": "Minor Arcana",
+    "suit": "Swords",
+    "keywords": ["Indecision", "Stalemate", "Blocked Emotions"],
+    "meaning_upright": "A difficult choice where you are stuck between two opposing options.",
+    "meaning_reversed": "Information overload, mental tension, or finally making a choice.",
+    "element": "Air"
+  },
+
+  {
+    "name": "Three of Swords",
+    "number": 3,
+    "arcana": "Minor Arcana",
+    "suit": "Swords",
+    "keywords": ["Heartbreak", "Sorrow", "Betrayal"],
+    "meaning_upright": "Emotional pain, grief, or a painful but necessary realization.",
+    "meaning_reversed": "Releasing pain, optimism, and forgiveness after a period of sorrow.",
+    "element": "Air"
+  },
+
+  {
+    "name": "Four of Swords",
+    "number": 4,
+    "arcana": "Minor Arcana",
+    "suit": "Swords",
+    "keywords": ["Rest", "Recovery", "Contemplation"],
+    "meaning_upright": "Taking a break to recharge your mental energy and recover from stress.",
+    "meaning_reversed": "Restlessness, burnout, or being forced back into action too quickly.",
+    "element": "Air"
+  },
+
+  {
+    "name": "Five of Swords",
+    "number": 5,
+    "arcana": "Minor Arcana",
+    "suit": "Swords",
+    "keywords": ["Conflict", "Self-Interest", "Win at All Costs"],
+    "meaning_upright": "A hollow victory achieved through aggression or lack of empathy.",
+    "meaning_reversed": "Ending a grudge, desire for peace, or recurring conflict.",
+    "element": "Air"
+  },
+
+  {
+    "name": "Six of Swords",
+    "number": 6,
+    "arcana": "Minor Arcana",
+    "suit": "Swords",
+    "keywords": ["Transition", "Moving On", "Departure"],
+    "meaning_upright": "Moving from a state of turbulence toward a more peaceful frame of mind.",
+    "meaning_reversed": "Feeling stuck, emotional baggage, or a difficult transition.",
+    "element": "Air"
+  },
+
+  {
+    "name": "Seven of Swords",
+    "number": 7,
+    "arcana": "Minor Arcana",
+    "suit": "Swords",
+    "keywords": ["Deception", "Strategy", "Sneakiness"],
+    "meaning_upright": "Trying to get away with something or using clever tactics to avoid conflict.",
+    "meaning_reversed": "Coming clean, being caught, or rethinking a deceptive strategy.",
+    "element": "Air"
+  },
+
+  {
+    "name": "Eight of Swords",
+    "number": 8,
+    "arcana": "Minor Arcana",
+    "suit": "Swords",
+    "keywords": ["Entrapment", "Restriction", "Self-Doubt"],
+    "meaning_upright": "Feeling trapped by your own limiting beliefs or a difficult situation.",
+    "meaning_reversed": "New perspective, freedom, and releasing self-imposed restrictions.",
+    "element": "Air"
+  },
+
+  {
+    "name": "Nine of Swords",
+    "number": 9,
+    "arcana": "Minor Arcana",
+    "suit": "Swords",
+    "keywords": ["Anxiety", "Nightmares", "Overthinking"],
+    "meaning_upright": "Mental anguish, worry, and stress that feels overwhelming.",
+    "meaning_reversed": "Finding hope, seeing the light at the end of the tunnel, or recovery.",
+    "element": "Air"
+  },
+
+  {
+    "name": "Ten of Swords",
+    "number": 10,
+    "arcana": "Minor Arcana",
+    "suit": "Swords",
+    "keywords": ["Betrayal", "Rock Bottom", "Endings"],
+    "meaning_upright": "A final ending or betrayal that allows for a completely fresh start.",
+    "meaning_reversed": "Recovery, regeneration, and resisting an inevitable conclusion.",
+    "element": "Air"
+  },
+
+  {
+    "name": "Page of Swords",
+    "number": 11,
+    "arcana": "Minor Arcana",
+    "suit": "Swords",
+    "keywords": ["Curiosity", "Mental Agility", "Vigilance"],
+    "meaning_upright": "An energetic new idea or a message requiring a sharp, analytical mind.",
+    "meaning_reversed": "Gossip, cynical attitudes, or all talk and no action.",
+    "element": "Air"
+  },
+
+  {
+    "name": "Knight of Swords",
+    "number": 12,
+    "arcana": "Minor Arcana",
+    "suit": "Swords",
+    "keywords": ["Ambition", "Action", "Directness"],
+    "meaning_upright": "Charging forward with logic and bravery to achieve a goal quickly.",
+    "meaning_reversed": "Recklessness, aggression, or a scattered, unfocused mind.",
+    "element": "Air"
+  },
+
+  {
+    "name": "Queen of Swords",
+    "number": 13,
+    "arcana": "Minor Arcana",
+    "suit": "Swords",
+    "keywords": ["Perception", "Independence", "Objective"],
+    "meaning_upright": "A leader who uses intellect and clear boundaries to seek the truth.",
+    "meaning_reversed": "Coldness, bitterness, or being overly critical of others.",
+    "element": "Air"
+  },
+
+  {
+    "name": "King of Swords",
+    "number": 14,
+    "arcana": "Minor Arcana",
+    "suit": "Swords",
+    "keywords": ["Intellectual", "Authority", "Truth"],
+    "meaning_upright": "A person of high integrity and logic who makes fair, unbiased decisions.",
+    "meaning_reversed": "Tyranny, manipulation, or an abuse of intellectual power.",
+    "element": "Air"
+  },
+  {
+    "name": "Ace of Pentacles",
+    "number": 1,
+    "arcana": "Minor Arcana",
+    "suit": "Pentacles",
+    "keywords": ["Manifestation", "Opportunity", "Prosperity"],
+    "meaning_upright": "A new financial or career opportunity is manifesting with great potential.",
+    "meaning_reversed": "A lost opportunity, bad investment, or a lack of practical planning.",
+    "element": "Earth"
+  },
+
+  {
+    "name": "Two of Pentacles",
+    "number": 2,
+    "arcana": "Minor Arcana",
+    "suit": "Pentacles",
+    "keywords": ["Balance", "Adaptability", "Prioritization"],
+    "meaning_upright": "Juggling multiple responsibilities or finances while staying flexible.",
+    "meaning_reversed": "Feeling overwhelmed, disorganized, or struggling to manage your time.",
+    "element": "Earth"
+  },
+
+  {
+    "name": "Three of Pentacles",
+    "number": 3,
+    "arcana": "Minor Arcana",
+    "suit": "Pentacles",
+    "keywords": ["Teamwork", "Collaboration", "Learning"],
+    "meaning_upright": "Working together with others to build something of lasting quality.",
+    "meaning_reversed": "Lack of teamwork, poor craftsmanship, or a lack of motivation at work.",
+    "element": "Earth"
+  },
+
+  {
+    "name": "Four of Pentacles",
+    "number": 4,
+    "arcana": "Minor Arcana",
+    "suit": "Pentacles",
+    "keywords": ["Security", "Conservation", "Frugality"],
+    "meaning_upright": "Protecting your resources and focusing on long-term financial stability.",
+    "meaning_reversed": "Greed, possessiveness, or finally spending money after a period of holding back.",
+    "element": "Earth"
+  },
+
+  {
+    "name": "Five of Pentacles",
+    "number": 5,
+    "arcana": "Minor Arcana",
+    "suit": "Pentacles",
+    "keywords": ["Hardship", "Loss", "Isolation"],
+    "meaning_upright": "A period of financial struggle or feeling left out in the cold.",
+    "meaning_reversed": "Recovery from financial loss, finding help, or an end to a hard time.",
+    "element": "Earth"
+  },
+
+  {
+    "name": "Six of Pentacles",
+    "number": 6,
+    "arcana": "Minor Arcana",
+    "suit": "Pentacles",
+    "keywords": ["Charity", "Generosity", "Sharing"],
+    "meaning_upright": "A balanced flow of resources where you are either giving or receiving help.",
+    "meaning_reversed": "Selfishness, debt, or giving with strings attached.",
+    "element": "Earth"
+  },
+
+  {
+    "name": "Seven of Pentacles",
+    "number": 7,
+    "arcana": "Minor Arcana",
+    "suit": "Pentacles",
+    "keywords": ["Patience", "Investment", "Sustainable Results"],
+    "meaning_upright": "Taking a step back to evaluate your progress and waiting for your hard work to pay off.",
+    "meaning_reversed": "Lack of results, frustration with progress, or wasted effort on a project.",
+    "element": "Earth"
+  },
+
+  {
+    "name": "Eight of Pentacles",
+    "number": 8,
+    "arcana": "Minor Arcana",
+    "suit": "Pentacles",
+    "keywords": ["Diligence", "Skill", "Craftsmanship"],
+    "meaning_upright": "Deeply focusing on mastering a skill or working hard on a specific task.",
+    "meaning_reversed": "Lack of ambition, perfectionism becoming a hurdle, or taking shortcuts.",
+    "element": "Earth"
+  },
+
+  {
+    "name": "Nine of Pentacles",
+    "number": 9,
+    "arcana": "Minor Arcana",
+    "suit": "Pentacles",
+    "keywords": ["Independence", "Abundance", "Self-Sufficiency"],
+    "meaning_upright": "Enjoying the luxury and peace that comes from your own hard work and independence.",
+    "meaning_reversed": "Overspending, financial dependency, or a lack of self-discipline.",
+    "element": "Earth"
+  },
+
+  {
+    "name": "Ten of Pentacles",
+    "number": 10,
+    "arcana": "Minor Arcana",
+    "suit": "Pentacles",
+    "keywords": ["Legacy", "Wealth", "Family"],
+    "meaning_upright": "Attaining long-term wealth, security, and a strong foundation for the future.",
+    "meaning_reversed": "Financial failure, family disputes over money, or a loss of family legacy.",
+    "element": "Earth"
+  },
+  {
+    "name": "Page of Pentacles",
+    "number": 11,
+    "arcana": "Minor Arcana",
+    "suit": "Pentacles",
+    "keywords": ["Ambition", "Diligent Student", "New Job"],
+    "meaning_upright": "A message or opportunity related to a new career path or financial goal.",
+    "meaning_reversed": "Procrastination, lack of focus, or setting unrealistic financial goals.",
+    "element": "Earth"
+  },
+  {
+    "name": "Knight of Pentacles",
+    "number": 12,
+    "arcana": "Minor Arcana",
+    "suit": "Pentacles",
+    "keywords": ["Hard Work", "Routine", "Reliability"],
+    "meaning_upright": "Slow but steady progress through commitment, routine, and practical effort.",
+    "meaning_reversed": "Feeling stuck in a rut, being a workaholic, or being too lazy to start.",
+    "element": "Earth"
+  },
+  {
+    "name": "Queen of Pentacles",
+    "number": 13,
+    "arcana": "Minor Arcana",
+    "suit": "Pentacles",
+    "keywords": ["Nurturing", "Practical", "Security"],
+    "meaning_upright": "A down-to-earth person who provides a warm, secure, and abundant home environment.",
+    "meaning_reversed": "Work-life imbalance, financial insecurity, or being overly materialistic.",
+    "element": "Earth"
+  },
+  {
+    "name": "King of Pentacles",
+    "number": 14,
+    "arcana": "Minor Arcana",
+    "suit": "Pentacles",
+    "keywords": ["Success", "Stability", "Abundance"],
+    "meaning_upright": "A master of the physical world who provides security and wealth for others.",
+    "meaning_reversed": "Greed, corruption, or being obsessed with social status and wealth.",
+    "element": "Earth"
+  }
+]
