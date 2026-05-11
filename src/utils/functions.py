@@ -166,18 +166,45 @@ class main(initScreenData):
             return new_list_of_cards
 
     def displayResults(self, shuffledDeck: List[Tuple[str, Union[str, int, Suit, Arcana]]], height: int) -> None:
-        calculatedHeight = int((height - 4) * (1/3))
-        self.console.print("[#b7bdf8 b]SHUFFLE RESULT[/#b7bdf8 b]")
-        self.console.print(("\n" * calculatedHeight) + "[#b7bdf8 b]CARD ONE[/#b7bdf8 b]")
-        self.console.print(("\n" * calculatedHeight) + "[#b7bdf8 b]CARD TWO[/#b7bdf8 b]")
-        self.console.print(("\n" * calculatedHeight) + "[#b7bdf8 b]CARD THREE[/#b7bdf8 b]")
+        #Using -19 because each print leaves a newline which is an extra char, we did end="" to remove that extrachar so now we have 19 instead of 17 since we used 2 print statements with end=""
+        calculatedHeight = int((height - 19) * (1/2))
+        calculatedHeight = max(0, calculatedHeight)
+        #Using max here helps us with very small terminal windows, it ensures that when we have a small terminal window of a negative height or a height near zero, our calculatedheight may become negative, and so using max ensures it chooses 0 over the negative
+        self.console.print("[#585b70]SHUFFLE RESULT[/#585b70]" + ("[#585b70]─[/#585b70]" * (get_terminal_size().columns - len("SHUFFLE RESULT"))))
+        self.console.print(Panel((
+                f"[#fab387]Situation:[#fab387] [#fab387 b]{shuffledDeck[0][0]}[/#fab387 b]\n"
+                f"[#fab387]Name:[#fab387] [#fab387 b]{shuffledDeck[0][1]}[/#fab387 b]\n"
+                f"[#fab387]Number:[#fab387] [#fab387 b]{shuffledDeck[0][2]}[/#fab387 b]\n"  
+            ).strip(),
+            expand = False, title=shuffledDeck[0][1], title_align="left", border_style="#fab387"
+            )
+        )
+        print("\n" * calculatedHeight, end="")
+        self.console.print(Panel((
+                f"[#f9e2af]Situation:[/#f9e2af] [#f9e2af b]{shuffledDeck[1][0]}[/#f9e2af b]\n"
+                f"[#f9e2af]Name:[/#f9e2af] [#f9e2af b]{shuffledDeck[1][1]}[/#f9e2af b]\n"
+                f"[#f9e2af]Number:[/#f9e2af] [#f9e2af b]{shuffledDeck[1][2]}[/#f9e2af b]\n"
+            ).strip(),
+            expand = False, title=shuffledDeck[1][1], title_align="left", border_style="#f9e2af"
+            )
+        )
+        print("\n" * calculatedHeight, end="")
+        self.console.print(Panel((
+                f"[#a6e3a1]Situation: [/#a6e3a1][#a6e3a1 b]{shuffledDeck[2][0]}[/#a6e3a1 b]\n"
+                f"[#a6e3a1]Name: [/#a6e3a1] [#a6e3a1 b]{shuffledDeck[2][1]}[/#a6e3a1 b]\n"
+                f"[#a6e3a1]Number: [/#a6e3a1] [#a6e3a1 b]{shuffledDeck[2][2]}[/#a6e3a1 b]\n"
+            ).strip(),
+            expand=False, title=shuffledDeck[2][1], title_align="left", border_style="#a6e3a1"
+            )
+        )
+        sleep(4)
 
 
     def processQuestion(self, question: Union[str, int]) -> None:
         #Process user's question here  
         self.deck_data: List[Tuple[str, Union[str, int, Enum]]] = self.shuffle_spinner(self.return_deck(f"{self.file_directory}/tarot_data.json"))
         self.clearScreen()
-        self.displayResults(None, get_terminal_size().lines)
+        self.displayResults(self.deck_data, get_terminal_size().lines)
         """try:
             ollama_response: str = self.response_spinner(question)
         except requests.exceptions.RequestException:
