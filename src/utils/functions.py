@@ -121,7 +121,7 @@ class main(initScreenData):
         return userQuestion
 
     def response_spinner(self, question: str, shuffle: List[Tuple[str, Union[str, int, Suit, Arcana]]]) -> str:
-        with self.console.status("[#a6e3a1 b]Performing HTTP POST request to ollama[/#a6e3a1 b]",spinner="line") as status: 
+        with self.console.status(f"[#a6e3a1 b]Performing an HTTP POST request to ollama[/#a6e3a1 b]",spinner="line") as status: 
             payload: Dict[str, Union[str, bool]] = {
                 "model": "tarotui",
                 "prompt": f"The question is {question} and the 3 cards are: {shuffle}",
@@ -191,9 +191,9 @@ class main(initScreenData):
         )
         print("\n" * calculatedHeight, end="")
         self.console.print(Panel((
-                f"[#a6e3a1]Situation: [/#a6e3a1][#a6e3a1 b]{shuffledDeck[2][0]}[/#a6e3a1 b]\n"
-                f"[#a6e3a1]Name: [/#a6e3a1] [#a6e3a1 b]{shuffledDeck[2][1]}[/#a6e3a1 b]\n"
-                f"[#a6e3a1]Number: [/#a6e3a1] [#a6e3a1 b]{shuffledDeck[2][2]}[/#a6e3a1 b]\n"
+                f"[#a6e3a1]Situation:[/#a6e3a1] [#a6e3a1 b]{shuffledDeck[2][0]}[/#a6e3a1 b]\n"
+                f"[#a6e3a1]Name:[/#a6e3a1] [#a6e3a1 b]{shuffledDeck[2][1]}[/#a6e3a1 b]\n"
+                f"[#a6e3a1]Number:[/#a6e3a1] [#a6e3a1 b]{shuffledDeck[2][2]}[/#a6e3a1 b]\n"
             ).strip(),
             expand=False, title=shuffledDeck[2][1], title_align="left", border_style="#a6e3a1"
             )
