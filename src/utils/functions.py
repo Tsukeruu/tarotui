@@ -167,8 +167,7 @@ class main(initScreenData):
 
     def displayResults(self, shuffledDeck: List[Tuple[str, Union[str, int, Suit, Arcana]]], height: int) -> None:
         #Using -19 because each print leaves a newline which is an extra char, we did end="" to remove that extrachar so now we have 19 instead of 17 since we used 2 print statements with end="", subtracting total height by the chars taken helps with remaining space which we use
-        calculatedHeight = int((height - 19) * (1/2))
-        calculatedHeight = max(0, calculatedHeight)
+        calculatedHeight = max(int((height - 19) * (1/2)), 0)
         #Using max here helps us with very small terminal windows, it ensures that when we have a small terminal window of a negative height or a height near zero, our calculatedheight may become negative, and so using max ensures it chooses 0 over the negative, same applies to the width
         self.console.print("[#585b70]SHUFFLE RESULT[/#585b70]" + ("[#585b70]─[/#585b70]" * max((get_terminal_size().columns - len("SHUFFLE RESULT")), 0)))
         self.console.print(Panel((
@@ -200,11 +199,11 @@ class main(initScreenData):
 
     def processQuestion(self, question: Union[str, int]) -> None:
         #Process user's question here  
-        self.deck_data: List[Tuple[str, Union[str, int, Enum]]] = self.shuffle_spinner(self.return_deck(f"{self.file_directory}/tarot_data.json"))
+        self.deck_data: List[Tuple[str, Union[str, int, Suit, Arcana]]] = self.shuffle_spinner(self.return_deck(f"{self.file_directory}/tarot_data.json"))
         self.clearScreen()
         self.displayResults(self.deck_data, get_terminal_size().lines)
         """try:
-            ollama_response: str = self.response_spinner(question)
+            ollama_response: str = self.response_spinner(question, self.deck_data)
         except requests.exceptions.RequestException:
             self.console.print("[#f38ba8 b][ㄨ] A severe post request error has occured![/#f38ba8 b]")
             self.console.print_exception(show_locals=True)
