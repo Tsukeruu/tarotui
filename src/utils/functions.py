@@ -169,8 +169,8 @@ class main(initScreenData):
         #Using -19 because each print leaves a newline which is an extra char, we did end="" to remove that extrachar so now we have 19 instead of 17 since we used 2 print statements with end=""
         calculatedHeight = int((height - 19) * (1/2))
         calculatedHeight = max(0, calculatedHeight)
-        #Using max here helps us with very small terminal windows, it ensures that when we have a small terminal window of a negative height or a height near zero, our calculatedheight may become negative, and so using max ensures it chooses 0 over the negative
-        self.console.print("[#585b70]SHUFFLE RESULT[/#585b70]" + ("[#585b70]─[/#585b70]" * (get_terminal_size().columns - len("SHUFFLE RESULT"))))
+        #Using max here helps us with very small terminal windows, it ensures that when we have a small terminal window of a negative height or a height near zero, our calculatedheight may become negative, and so using max ensures it chooses 0 over the negative, same applies to the width
+        self.console.print("[#585b70]SHUFFLE RESULT[/#585b70]" + ("[#585b70]─[/#585b70]" * max((get_terminal_size().columns - len("SHUFFLE RESULT")), 0)))
         self.console.print(Panel((
                 f"[#fab387]Situation:[#fab387] [#fab387 b]{shuffledDeck[0][0]}[/#fab387 b]\n"
                 f"[#fab387]Name:[#fab387] [#fab387 b]{shuffledDeck[0][1]}[/#fab387 b]\n"
@@ -220,8 +220,8 @@ class main(initScreenData):
 
     def finalizePanel(self, width: int) -> None:
         self.console.print(self.renderPanel())
-        self.console.print(("[#585b70 b]" + self.tiptext + "[/#585b70 b]") + ("[#585b70]─[/#585b70]" * (width - len(self.tiptext))))
-        #To create a dynamic "-" we multiply by the width, if we were to include text such as tiptext, simply multiplyig by the full width will not multiply the dash by the remaining space, we must take the full width of the terminal screen, including the tiptext and the dashes, and subtract the width by the len of tiptext to find the remaining space, then we multiply the - by that remaining space to fill the rest
+        self.console.print((f"[#585b70 b]{self.tiptext}[/#585b70 b]") + ("[#585b70]─[/#585b70]" * max(0, (width - len(self.tiptext)))))
+        #To create a dynamic "-" we multiply by the width, if we were to include text such as tiptext, simply multiplyig by the full width will not multiply the dash by the remaining space, we must take the full width of the terminal screen, including the tiptext and the dashes, and subtract the width by the len of tiptext to find the remaining space, then we multiply the - by that remaining space to fill the rest, using max helps with negative terminal sizes (very small) so - with the text will result in a negative, we lock it to 0
 
     def execute(self) -> None:
         orders: List[Callable[None,[None]]] = [
