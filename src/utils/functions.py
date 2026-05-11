@@ -100,15 +100,17 @@ class main(initScreenData):
 
     def typeWrite(self, paragraph: str, delay: int) -> None:
         initString: str = ""
+        readingPanel: Panel = Panel(initString, title="[#89b4fa b]Reading[/#89b4fa b]", title_align="left", border_style="#89b4fa")
         #Vertical overflow is a dynamic arguement that calculates terminal height and decided what to do when the content being updated exceeds terminal height or is not showing, setting visible ensures the terminal scrolls with the content, by default when content exceeds terminal height, an ellipsis is shown indicating more is to be shown but does not usually update
-        with Live(initString, console=self.console, refresh_per_second=20, vertical_overflow="visible") as animation:
+        with Live(readingPanel, console=self.console, refresh_per_second=20, vertical_overflow="visible") as animation:
             for char in paragraph:
                 initString += char
-                animation.update(initString)
+                animation.update(Panel(initString, title="[#89b4fa b]Reading[/#89b4fa b]", title_align="left", border_style="#89b4fa"))
                 sleep(delay)
         #Why did we not use our classic forloop with console.print? 
         #There is no mere support for that as console.print expects correct markdown opening and closing tags, in our code, we defined the paragraph with opening and closing tags, however console.print printed each character and expected each to have an opening and closing tag, not as a whole, by using live which has direct rich support, we use live.update(animation_object) to redraw it everytime, this way it re reads the tags and renders them as a whole paragraph
         #To understand rich Live effectively, the animationobject passed into the context manager is the starting point, then over time we add on characters through our forloop through arithmetic operations such as +=, and we update it by telling rich to redraw it, we use animation.update by notifying rich that it has changed, it handles the rest from there, by clearing it and adding on characters, then uses console.print with the finished full read of markdown and tags to parse bold characters effectively
+
     def userPrompt(self, style: Style.from_dict) -> Union[str, int]:
         userQuestion: Union[str, int] = self.session.prompt(
                 HTML("<b><prompt>> </prompt></b>"),
@@ -118,7 +120,7 @@ class main(initScreenData):
             )
         return userQuestion
 
-    def response_spinner(self, question: str, shuffle: List[Tuple[str, Union[str, int, Suit, Arcana]]]) -> str: 
+    def response_spinner(self, question: str, shuffle: List[Tuple[str, Union[str, int, Suit, Arcana]]]) -> str:
         with self.console.status("[#a6e3a1 b]Performing HTTP POST request to ollama[/#a6e3a1 b]",spinner="line") as status: 
             payload: Dict[str, Union[str, bool]] = {
                 "model": "tarotui",
@@ -202,14 +204,14 @@ class main(initScreenData):
         self.deck_data: List[Tuple[str, Union[str, int, Suit, Arcana]]] = self.shuffle_spinner(self.return_deck(f"{self.file_directory}/tarot_data.json"))
         self.clearScreen()
         self.displayResults(self.deck_data, get_terminal_size().lines)
-        """try:
+        try:
             ollama_response: str = self.response_spinner(question, self.deck_data)
         except requests.exceptions.RequestException:
             self.console.print("[#f38ba8 b][ㄨ] A severe post request error has occured![/#f38ba8 b]")
             self.console.print_exception(show_locals=True)
             return
         self.clearScreen() 
-        self.typeWrite(ollama_response, 0.01)"""
+        self.typeWrite(ollama_response, 0.01)
 
     def renderPanel(self) -> rich.panel.Panel:
         mainPanel: rich.panel.Panel = Panel(self.boxContent.strip(), expand = False, title = "[b]About[/b]", title_align = "left", border_style = "#b4befe")
