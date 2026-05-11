@@ -166,7 +166,7 @@ class main(initScreenData):
             return new_list_of_cards
 
     def displayResults(self, shuffledDeck: List[Tuple[str, Union[str, int, Suit, Arcana]]], height: int) -> None:
-        #Using -19 because each print leaves a newline which is an extra char, we did end="" to remove that extrachar so now we have 19 instead of 17 since we used 2 print statements with end=""
+        #Using -19 because each print leaves a newline which is an extra char, we did end="" to remove that extrachar so now we have 19 instead of 17 since we used 2 print statements with end="", subtracting total height by the chars taken helps with remaining space which we use
         calculatedHeight = int((height - 19) * (1/2))
         calculatedHeight = max(0, calculatedHeight)
         #Using max here helps us with very small terminal windows, it ensures that when we have a small terminal window of a negative height or a height near zero, our calculatedheight may become negative, and so using max ensures it chooses 0 over the negative, same applies to the width
@@ -197,8 +197,6 @@ class main(initScreenData):
             expand=False, title=shuffledDeck[2][1], title_align="left", border_style="#a6e3a1"
             )
         )
-        sleep(4)
-
 
     def processQuestion(self, question: Union[str, int]) -> None:
         #Process user's question here  
