@@ -132,7 +132,7 @@ class main(initScreenData):
             self.console.print("[#f9e2af b][✓] Performed post request successfuly![/#f9e2af b]")
             status.update("[#a6e3a1 b]Finishing up...[/#a6e3a1 b]")
             sleep(1.5)  
-            return "[b]" + json_response["response"] + "[/b]"
+            return f'[b]{json_response["response"]}[/b]'
     
     def shuffle_spinner(self, deck: List[Card]) -> List[Tuple[str, Union[str, int, bool, Arcana, Suit]]]: 
         with self.console.status("[#eed49f b]Shuffling the deck...[/#eed49f b]",spinner="line", spinner_style="bold #eed49f") as status:
