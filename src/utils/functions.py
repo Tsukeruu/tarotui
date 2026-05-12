@@ -50,8 +50,8 @@ class main(initScreenData):
                 {
                   "prompt": "#b4befe",
                   "placeholder": "#585b70",
-                  "selected-option": "#89b4fa bold",
-                  "frame.border": "#b4befe"
+                  "selected-option": "#b4befe bold",
+                  "frame.border": "#89b4fa"
                 }
             ),
             api_endpoint = "http://localhost:11434/api/generate", 
@@ -69,8 +69,8 @@ class main(initScreenData):
 4. [#cba6f7 b]Enjoy![/#cba6f7 b]
             """,
             optionsConfirm = [
-                ("yes","Yes, proceed to the reading"),
-                ("no", "No, I want to exit TAROTUI :( ")
+                ("yes","Return to menu"),
+                ("no", "I want to exit TAROTUI :( ")
             ],
             messageConfirm = "What would you like to do next?"
         ) 
@@ -107,7 +107,7 @@ class main(initScreenData):
             for frame in self.effect: #Iteration for classes is achievable through a special method called iter, the rest is handled through terminal text effects
                 output.print(frame)
 
-    def typeWrite(self, paragraph: str, delay: int) -> None:
+    def typeWrite(self, paragraph: str, delay: int) -> Union[bool, str]:
         initString: str = ""
         readingPanel: Panel = Panel(initString, title="[#89b4fa b]Reading[/#89b4fa b]", title_align="left", border_style="#89b4fa")
         #Vertical overflow is a dynamic arguement that calculates terminal height and decided what to do when the content being updated exceeds terminal height or is not showing, setting visible ensures the terminal scrolls with the content, by default when content exceeds terminal height, an ellipsis is shown indicating more is to be shown but does not usually update
@@ -116,6 +116,11 @@ class main(initScreenData):
                 initString += char
                 animation.update(Panel(initString, title="[#89b4fa b]Reading[/#89b4fa b]", title_align="left", border_style="#89b4fa"))
                 sleep(delay)
+        userChoice: str = self.confirmChoice(self.optionsConfirm, self.messageConfirm)
+        if userChoice == "no":
+            return "exit"
+        else:
+            return False
         #Why did we not use our classic forloop with console.print? 
         #There is no mere support for that as console.print expects correct markdown opening and closing tags, in our code, we defined the paragraph with opening and closing tags, however console.print printed each character and expected each to have an opening and closing tag, not as a whole, by using live which has direct rich support, we use live.update(animation_object) to redraw it everytime, this way it re reads the tags and renders them as a whole paragraph
         #To understand rich Live effectively, the animationobject passed into the context manager is the starting point, then over time we add on characters through our forloop through arithmetic operations such as +=, and we update it by telling rich to redraw it, we use animation.update by notifying rich that it has changed, it handles the rest from there, by clearing it and adding on characters, then uses console.print with the finished full read of markdown and tags to parse bold characters effectively
@@ -131,7 +136,7 @@ class main(initScreenData):
     
     def confirmChoice(self, optionList: List[Tuple[str, str]], message: str) -> str:
         confirmAnswer: str = choice(
-                message=HTML(f"<b><prompt>{message}</prompt></b>"),
+                message=HTML(f"<b><#89b4fa>{message}</#89b4fa></b>"),
                 options=optionList,
                 default=optionList[0][0],
                 style=self.ptk_style,
@@ -221,24 +226,19 @@ class main(initScreenData):
         )
         self.console.print("[#585b70]─[/#585b70]" * max(int((get_terminal_size().columns)), 0))
 
-    def processQuestion(self, question: Union[str, int]) -> None:
+    def processQuestion(self, question: Union[str, int]) -> Union[str, bool, None]:
         #Process user's question here  
         self.deck_data: List[Tuple[str, Union[str, int, Suit, Arcana]]] = self.shuffle_spinner(self.return_deck(f"{self.file_directory}/tarot_data.json"))
         self.clearScreen()
         self.displayResults(self.deck_data, get_terminal_size().lines)
-        self.userAnswer: str = self.confirmChoice(self.optionsConfirm, self.messageConfirm)
-        if self.userAnswer == "yes":
-            self.clearScreen()
-            try:
-                ollama_response: str = self.response_spinner(question, self.deck_data)
-            except requests.exceptions.RequestException:
-                self.console.print("[#f38ba8 b][ㄨ] A severe post request error has occured![/#f38ba8 b]")
-                self.console.print_exception(show_locals=True)
-                return
-            self.clearScreen()
-            self.typeWrite(ollama_response, 0.01)
-        else:
+        try:
+            ollama_response: str = self.response_spinner(question, self.deck_data)
+        except requests.exceptions.RequestException:
+            self.console.print("[#f38ba8 b][ㄨ] A severe post request error has occured![/#f38ba8 b]")
+            self.console.print_exception(show_locals=True)
             return
+        self.clearScreen()
+        return self.typeWrite(ollama_response, 0.01)
 
     def renderPanel(self) -> rich.panel.Panel:
         mainPanel: rich.panel.Panel = Panel(self.boxContent.strip(), expand = False, title = "[b]About[/b]", title_align = "left", border_style = "#b4befe")
@@ -256,5 +256,10 @@ class main(initScreenData):
             lambda: self.finalizePanel(get_terminal_size().columns), 
             lambda: self.processQuestion(self.userPrompt(self.ptk_style))
         ]
-        for execution in orders:
-            execution()
+        while True:
+            for index, execution in enumerate(orders):
+                choice_for_exit: Union[str, bool, None] = execution()
+                if choice_for_exit == "exit":
+                    return
+                else:
+                    pass
