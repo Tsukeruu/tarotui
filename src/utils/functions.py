@@ -24,8 +24,10 @@ from prompt_toolkit.formatted_text import HTML
 from prompt_toolkit import PromptSession
 from prompt_toolkit.history import FileHistory
 from prompt_toolkit.auto_suggest import AutoSuggestFromHistory
+from prompt_toolkit.shortcuts import choice
 
 import requests
+import random
 
 """
  ▀▄    ▀█▀ █▀█ █▀▄ █▀█ ▀█▀ █ █ ▀█▀
@@ -47,7 +49,9 @@ class main(initScreenData):
             ptk_style = Style.from_dict(
                 {
                   "prompt": "#b4befe",
-                  "placeholder": "#585b70"
+                  "placeholder": "#585b70",
+                  "selected-option": "#89b4fa bold",
+                  "frame.border": "#b4befe"
                 }
             ),
             api_endpoint = "http://localhost:11434/api/generate", 
@@ -63,7 +67,12 @@ class main(initScreenData):
 2. Powered by [#cba6f7 b]ollama[/#cba6f7 b] (intelligence may be limited).
 3. Responses might misinterpret or be inaccurate.
 4. [#cba6f7 b]Enjoy![/#cba6f7 b]
-            """
+            """,
+            optionsConfirm = [
+                ("yes","Yes, proceed to the reading"),
+                ("no", "No, I want to exit TAROTUI :( ")
+            ],
+            messageConfirm = "What would you like to do next?"
         ) 
     
     def return_deck(self, json_file: str) -> List[Card]:
@@ -119,6 +128,16 @@ class main(initScreenData):
                 auto_suggest=AutoSuggestFromHistory()
             )
         return userQuestion
+    
+    def confirmChoice(self, optionList: List[Tuple[str, str]], message: str) -> str:
+        confirmAnswer: str = choice(
+                message=HTML(f"<b><prompt>{message}</prompt></b>"),
+                options=optionList,
+                default=optionList[0][0],
+                style=self.ptk_style,
+                show_frame=True
+            )
+        return confirmAnswer
 
     def response_spinner(self, question: str, shuffle: List[Tuple[str, Union[str, int, Suit, Arcana]]]) -> str:
         with self.console.status(f"[#a6e3a1 b]Performing an HTTP POST request to ollama[/#a6e3a1 b]",spinner="line") as status: 
@@ -141,7 +160,7 @@ class main(initScreenData):
             meanings: List[str] = []
             bool_meanings: List[bool] = []
             for card, situation in zip(list_of_cards, self.situation):
-                reversed_meaning: List[bool] = choice([True, False]) 
+                reversed_meaning: bool = random.choice([True, False]) 
                 if reversed_meaning:
                     meaning: str = card.meaning_reversed
                 else:
@@ -168,8 +187,8 @@ class main(initScreenData):
             return new_list_of_cards
 
     def displayResults(self, shuffledDeck: List[Tuple[str, Union[str, int, Suit, Arcana]]], height: int) -> None:
-        #Using -19 because each print leaves a newline which is an extra char, we did end="" to remove that extrachar so now we have 19 instead of 17 since we used 2 print statements with end="", subtracting total height by the chars taken helps with remaining space which we use
-        calculatedHeight = min(max(int(((height-19) * (1/2)) * 1/2), 0), 4)
+        #Using -20 because each print leaves a newline which is an extra char, we did end="" to remove that extrachar so now we have 20 instead of 18 since we used 2 print statements with end="", subtracting total height by the chars taken helps with remaining space which we use
+        calculatedHeight = min(max(int(((height-20) * (1/2)) * 1/2), 0), 4)
         #Using max here helps us with very small terminal windows, it ensures that when we have a small terminal window of a negative height or a height near zero, our calculatedheight may become negative, and so using max ensures it chooses 0 over the negative, same applies to the width
         #To minimize space between the panels while being within the correct terminal height range we minimize by dividing by 2, taking that first half of remaining terminal space, and then dividing it by 2 furthermore to get smaller versions
         #Using min here helps us strengthen minimization by making sure that in larger screens, that /2 of that remaining space * 1/2, isnt too large for a screen so we set a limit by choosing 2 whenever it gets large, Also in the final part we divide it by 2 because we used 2 gaps, and for example, dividing it by 3 would leave another empty 1/3 gap of the half of the remaining space, so we use /2 to fit the 2 panels and fill the half
@@ -200,20 +219,26 @@ class main(initScreenData):
             expand=False, title=shuffledDeck[2][1], title_align="left", border_style="#a6e3a1"
             )
         )
+        self.console.print("[#585b70]─[/#585b70]" * max(int((get_terminal_size().columns)), 0))
 
     def processQuestion(self, question: Union[str, int]) -> None:
         #Process user's question here  
         self.deck_data: List[Tuple[str, Union[str, int, Suit, Arcana]]] = self.shuffle_spinner(self.return_deck(f"{self.file_directory}/tarot_data.json"))
         self.clearScreen()
         self.displayResults(self.deck_data, get_terminal_size().lines)
-        try:
-            ollama_response: str = self.response_spinner(question, self.deck_data)
-        except requests.exceptions.RequestException:
-            self.console.print("[#f38ba8 b][ㄨ] A severe post request error has occured![/#f38ba8 b]")
-            self.console.print_exception(show_locals=True)
+        self.userAnswer: str = self.confirmChoice(self.optionsConfirm, self.messageConfirm)
+        if self.userAnswer == "yes":
+            self.clearScreen()
+            try:
+                ollama_response: str = self.response_spinner(question, self.deck_data)
+            except requests.exceptions.RequestException:
+                self.console.print("[#f38ba8 b][ㄨ] A severe post request error has occured![/#f38ba8 b]")
+                self.console.print_exception(show_locals=True)
+                return
+            self.clearScreen()
+            self.typeWrite(ollama_response, 0.01)
+        else:
             return
-        self.clearScreen() 
-        self.typeWrite(ollama_response, 0.01)
 
     def renderPanel(self) -> rich.panel.Panel:
         mainPanel: rich.panel.Panel = Panel(self.boxContent.strip(), expand = False, title = "[b]About[/b]", title_align = "left", border_style = "#b4befe")
