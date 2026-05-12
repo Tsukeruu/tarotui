@@ -172,7 +172,7 @@ class main(initScreenData):
         calculatedHeight = min(max(int(((height-19) * (1/2)) * 1/2), 0), 2)
         #Using max here helps us with very small terminal windows, it ensures that when we have a small terminal window of a negative height or a height near zero, our calculatedheight may become negative, and so using max ensures it chooses 0 over the negative, same applies to the width
         #To minimize space between the panels while being within the correct terminal height range we minimize by dividing by 2, taking that first half of remaining terminal space, and then dividing it by 2 furthermore to get smaller versions
-        #Using min here helps us strengthen minimization by making sure that in larger screens, that /2 of that remaining space * 1/2, isnt too large for a screen so we set a limit by choosing 2 whenever it gets large
+        #Using min here helps us strengthen minimization by making sure that in larger screens, that /2 of that remaining space * 1/2, isnt too large for a screen so we set a limit by choosing 2 whenever it gets large, Also in the final part we divide it by 2 because we used 2 gaps, and for example, dividing it by 3 would leave another empty 1/3 gap of the half of the remaining space, so we use /2 to fit the 2 panels and fill the half
         self.console.print("[#585b70]SHUFFLE RESULT[/#585b70]" + ("[#585b70]─[/#585b70]" * max(int((get_terminal_size().columns - len("SHUFFLE RESULT"))), 0)))
         self.console.print(Panel((
                 f"[#fab387]Situation:[#fab387] [#fab387 b]{shuffledDeck[0][0]}[/#fab387 b]\n"
