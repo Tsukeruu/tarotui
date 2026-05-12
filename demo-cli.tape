@@ -77,5 +77,5 @@ Type "python tarot.py" Sleep 500ms  Enter
 Sleep 7s
 Type "Is my linux hyprland setup going to be amazing in the foreseeable future" Sleep 500ms Enter
 
-Sleep 83s
+Sleep 95s
 Enter
