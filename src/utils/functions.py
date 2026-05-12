@@ -51,7 +51,8 @@ class main(initScreenData):
                   "prompt": "#b4befe",
                   "placeholder": "#585b70",
                   "selected-option": "#b4befe bold",
-                  "frame.border": "#89b4fa"
+                  "frame.border": "#89b4fa",
+                  "blue": "#89b4fa"
                 }
             ),
             api_endpoint = "http://localhost:11434/api/generate", 
@@ -136,7 +137,7 @@ class main(initScreenData):
     
     def confirmChoice(self, optionList: List[Tuple[str, str]], message: str) -> str:
         confirmAnswer: str = choice(
-                message=HTML(f"<b><#89b4fa>{message}</#89b4fa></b>"),
+                message=HTML(f"<b><blue>{message}</blue></b>"),
                 options=optionList,
                 default=optionList[0][0],
                 style=self.ptk_style,
