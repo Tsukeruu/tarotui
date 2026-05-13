@@ -78,7 +78,7 @@ class main(initScreenData):
     
     def return_deck(self, json_file: str) -> List[Card]:
         with open(json_file, 'r') as file:
-            json_data = load(file)
+            json_data: Dict[str, Union[str, int]] = load(file)
 
         deck = [
             Card(
@@ -100,12 +100,12 @@ class main(initScreenData):
 
     def effectSettings(self, effect: terminaltexteffects.effects.effect_laseretch.LaserEtch):
         effect.effect_config.etch_speed: int = 1
-        effect.effect_config.final_gradient_stops: Tuple[Color[str]] = (Color("#89b4fa"), Color("#cba6f7"))
+        effect.effect_config.final_gradient_stops: Tuple[Color[str], Color[str]] = (Color("#89b4fa"), Color("#cba6f7"))
 
-    def drawAscii(self) -> None:
+    def drawAscii(self, ascii_art: str) -> None:
         with self.effect.terminal_output() as output:
-            self.effectSettings(self.effect)
-            for frame in self.effect: #Iteration for classes is achievable through a special method called iter, the rest is handled through terminal text effects
+            self.effectSettings(ascii_art)
+            for frame in ascii_art: #Iteration for classes is achievable through a special method called iter, the rest is handled through terminal text effects
                 output.print(frame)
 
     def typeWrite(self, paragraph: str, delay: int) -> Union[bool, str]:
@@ -251,9 +251,9 @@ class main(initScreenData):
         #To create a dynamic "-" we multiply by the width, if we were to include text such as tiptext, simply multiplyig by the full width will not multiply the dash by the remaining space, we must take the full width of the terminal screen, including the tiptext and the dashes, and subtract the width by the len of tiptext to find the remaining space, then we multiply the - by that remaining space to fill the rest, using max helps with negative terminal sizes (very small) so - with the text will result in a negative, we lock it to 0
 
     def execute(self) -> None:
-        orders: List[Callable[None,[None]]] = [
+        orders: List[Callable[None,None]] = [
             lambda: self.clearScreen(),
-            lambda: self.drawAscii(),
+            lambda: self.drawAscii(self.effect),
             lambda: self.finalizePanel(get_terminal_size().columns), 
             lambda: self.processQuestion(self.userPrompt(self.ptk_style))
         ]
