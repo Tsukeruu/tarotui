@@ -159,7 +159,8 @@ class main(initScreenData):
             status.update("[#a6e3a1 b]Finishing up...[/#a6e3a1 b]")
             sleep(1.5)  
             return f'[b]{json_response["response"]}[/b]'
-    
+            #Perhaps use .get() for when it says no such key as response (usually happens when model is not downloaded)    
+
     def shuffle_spinner(self, deck: List[Card]) -> List[Tuple[str, Union[str, int, bool, Arcana, Suit]]]: 
         with self.console.status("[#eed49f b]Shuffling the deck...[/#eed49f b]",spinner="line", spinner_style="bold #eed49f") as status:
             list_of_cards: List[Card] = sample(deck, 3)
