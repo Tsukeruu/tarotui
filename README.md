@@ -13,14 +13,17 @@ A tarot reading experience in the terminal
 
 <details>
   <summary>INSTRUCTIONS</summary>
-  To begin your first tarot reading experience run the install script in python using the following command, please note that this command does not account for git cloning, it assumes you've already git cloned the repository, if you havent git cloned the repository then git clone it now and follow up on the install script
+  
+  - To begin your first tarot reading experience run the install script in shell using the following command, please note that this command does not account for git cloning, it assumes you've already git cloned the repository, if you havent git cloned the repository then git clone it now and follow up on the install script
 
   ```bash
-    git clone 
+  chmod +x ./install.sh
+  ./install.sh
   ```
-  
+
+  If you havent git cloned then procceed to do so here and run the command above ^^
   ```bash
-    python install.py
+  git clone https://github.com/Tsukeruu/tarotui
   ```
 
 </details>
