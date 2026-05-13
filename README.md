@@ -21,7 +21,7 @@ A tarot reading experience in the terminal
   ./install.sh
   ```
 
-  If you havent git cloned then procceed to do so here and run the command above ^^
+  If you havent git cloned then proceed to do so here and run the command above ^^
   ```bash
   git clone https://github.com/Tsukeruu/tarotui
   ```
