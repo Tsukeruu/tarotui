@@ -1,7 +1,12 @@
+certifi==2026.4.22
+charset-normalizer==3.4.7
+idna==3.13
 markdown-it-py==4.2.0
 mdurl==0.1.2
 prompt_toolkit==3.0.52
 Pygments==2.20.0
+requests==2.33.1
 rich==15.0.0
 terminaltexteffects==0.14.2
+urllib3==2.7.0
 wcwidth==0.7.0
