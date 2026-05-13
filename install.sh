@@ -1,3 +1,5 @@
+#!/usr/bin/sh
+
 #An install script for tarotui
 
 # ▀▄    ▀█▀ █▀█ █▀▄ █▀█ ▀█▀ █ █ ▀█▀

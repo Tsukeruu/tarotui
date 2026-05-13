@@ -1,5 +1,6 @@
 from dataclasses import dataclass, field
 from .dataclasses import initScreenData, Card, Arcana, Suit
+from .custom_errors import API_ERROR
 from typing import Dict, List, Any, Tuple, ClassVar
 from enum import Enum
 
@@ -234,10 +235,9 @@ class main(initScreenData):
         self.displayResults(self.deck_data, get_terminal_size().lines)
         try:
             ollama_response: str = self.response_spinner(question, self.deck_data)
-        except requests.exceptions.RequestException:
+        except requests.exceptions.RequestException as requestException:
             self.console.print("[#f38ba8 b][ㄨ] A severe post request error has occured![/#f38ba8 b]")
-            self.console.print_exception(show_locals=True)
-            return
+            raise API_ERROR(message=None, error=requestException) 
         self.clearScreen()
         return self.typeWrite(ollama_response, 0.01)
 
