@@ -63,3 +63,8 @@ cd tarotui
 ollama create tarotui -f src/utils/Ollama_custom/Modelfile
 ```
 **The command above installs ollama 3.2 if not installed, which takes 2 gbs of storage and builds the custom model using the Modelfile which includes the persona required for the reading**
+
+
+## License
+
+[MIT](LICENSE)
