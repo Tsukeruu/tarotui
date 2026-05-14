@@ -17,7 +17,7 @@ A tarot reading experience in the terminal
   - To begin your first tarot reading experience run the install script in shell using the following command, please note that this command does not account for git cloning, it assumes you've already git cloned the repository, if you havent git cloned the repository then git clone it now and follow up on the install script
 
   ```bash
-  chmod +x ./install.sh
+  cd tarotui && chmod +x ./install.sh
   ./install.sh
   ```
 
