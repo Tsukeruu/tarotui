@@ -22,7 +22,7 @@ For contributions in regards to model availability please read [Contributing.md]
 ![Repo Size](https://img.shields.io/github/repo-size/Tsukeruu/tarotui?style=for-the-badge)
 ![Issues](https://img.shields.io/github/issues/Tsukeruu/tarotui?style=for-the-badge)
 
-[<img width="1200" height="800" alt="Image" src="https://github.com/user-attachments/assets/8679285a-d71e-4d98-a764-b15fab5ad695" />](https://vhs.charm.sh/vhs-1fhfTswUxSSEJIweYspg1J.gif)
+<img width="1200" height="800" alt="Image" src="https://github.com/user-attachments/assets/e4a310a5-bad0-425d-b20c-63681a1653f7" />
 
 - Sorry for the slow post request my internet is bunz :(
 
