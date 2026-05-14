@@ -8,11 +8,11 @@ A tarot reading experience in the terminal
 
 - All currently supported models are listed below
 
-| Model         | Size (in gb)                         | Status    |
-| :------------ | :----------------------------------- | :-------: |
-| DEEPSEEK-R1   | 5gb                                  | Available at `deepseek-r1 `branch |
-| llama3.2      | 2-3 gb                               | Available at `master` branch      |     
-| qwen3.5:4b    | 3.4 gb                               | Available at `qwen3.5` bramch     |
+| Model         | Size (in gb)              | Status                            |
+| :------------ | :-------------------------| :-------------------------------- |
+| DEEPSEEK-R1   | 5gb                       | Available at `deepseek-r1 `branch |
+| llama3.2      | 2-3 gb                    | Available at `master` branch      |     
+| qwen3.5:4b    | 3.4 gb                    | Available at `qwen3.5` bramch     |
 
 For contributions in regards to model availability please read [Contributing.md](CONTRIBUTING.md)
 
