@@ -15,14 +15,8 @@ A tarot reading experience in the terminal
 
 - Sorry for the slow post request my internet is bunz :(
 
-<details>
-  <summary>ABOUT</summary>
   
-  - **TAROTUI** is a tarot reading experience in the terminal built with python 🐍, questions are analyzed through ollama and card shuffling is done through the backend
-</details>
-
-<details>
-  <summary>INSTALLATION</summary>
+- **TAROTUI** is a tarot reading experience in the terminal built with python 🐍, questions are analyzed through ollama and card shuffling is done through the backend
 
   <img width="1893" height="996" alt="Image" src="https://github.com/user-attachments/assets/d5b24e96-e8e9-4764-b868-845048440bdc" />
   
@@ -65,4 +59,3 @@ cd tarotui
 ollama create tarotui -f src/utils/Ollama_custom/Modelfile
 ```
 **The command above installs ollama 3.2 if not installed, which takes 2 gbs of storage and builds the custom model using the Modelfile which includes the persona required for the reading**
-</details>
