@@ -4,7 +4,7 @@ A tarot reading experience in the terminal
 > [!TIP]
 > TAROTUI in the master branch uses an ollama model with approximately 2-3gb of storage, that model is specifically and originally `ollama3.2`.
 > In the foreseeable future (yes i love using this word), options to choose custom models based on user preferences is going to be added to allocate different situations, such as not enough storage, etc.
-> Please know that qwen3.5:4b support is added by switching to the qwen3.5 branch and rebuilding the model through ```ollama create tarotui -f src/utils/Ollama_custom/Modelfile```
+> Please know that qwen3.5:4b and deepseek-r1 support is added by switching to the qwen3.5 / deepseek-r1 branch and rebuilding the model through ```ollama create tarotui -f src/utils/Ollama_custom/Modelfile```
 
 ![Stars](https://img.shields.io/github/stars/Tsukeruu/tarotui?style=for-the-badge)
 ![License](https://img.shields.io/github/license/Tsukeruu/tarotui?style=for-the-badge)
