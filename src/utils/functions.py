@@ -150,7 +150,7 @@ class main(initScreenData):
         return confirmAnswer
 
     def response_spinner(self, question: str, shuffle: List[Tuple[str, Union[str, int, Suit, Arcana]]]) -> str:
-        with self.console.status(f"[#a6e3a1 b]Performing an HTTP POST request to ollama[/#a6e3a1 b]",spinner="line") as status: 
+        with self.console.status(f"[#a6e3a1 b]Consulting the Arcana... The patterns are shifting in your favor.[/#a6e3a1 b]",spinner="line") as status: 
             payload: Dict[str, Union[str, bool]] = {
                 "model": "tarotui",
                 "prompt": f"The question is {question} and the 3 cards are: {shuffle}",
