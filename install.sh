@@ -22,16 +22,28 @@ echo '''
 main() {
   echo "Installing the required python libraries"
   pip install -r libraries.txt
-  if ! command -v "ollama" > /dev/null; then
-    read -p "Would you like to install ollama and build the ollama model required for the reading? (Y/N) " ollamaPrompt
-    if [[ "$ollamaPrompt" = "Y" || "$ollamaPrompt" = "y" ]]; then
-      curl -fsSL https://ollama.com/install.sh | sh
-      ollama create tarotui -f src/utils/Ollama_custom/Modelfile
-    else
+  if ! command -v "ollama"; then
+     read -p "Ollama was not detected in your system, would you like to download and install it now? (Y/N) " installOllama
+     if [[ "$installOllama" = "Y" || "$installOllama" = "y" ]]; then
+        curl -fsSL https://ollama.com/install.sh | sh
+     else 
+       exit
+     fi
+  else 
+    continue
+  fi
+
+  read -p "Would you also like to build the ollama model required for the reading? (Y/N) " ollamaPrompt
+  if [[ "$ollamaPrompt" = "Y" || "$ollamaPrompt" = "y" ]]; then 
+    ollama create tarotui -f src/utils/Ollama_custom/Modelfile
+    read -p "After creating the model: tarotui, would you like to delete the base model 'llama3.2', this would not affect anything in regards to the program" clean
+    if [[ "$clean" = "Y" || "$clean" = "y" ]]; then
+      ollama rm llama3.2
+    else 
       continue
     fi
   else
-    echo "OLLAMA ALREADY INSTALLED, PROCEEDING TO RUN TAROTUI..."
+    continue
   fi
   read -p "Would you like to run tarotui? (Y/N) " runPrompt
   if [[ "$runPrompt" = "Y" || "$runPrompt" = "y" ]]; then
