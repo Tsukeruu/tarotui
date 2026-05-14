@@ -13,9 +13,11 @@ A tarot reading experience in the terminal
 
 <details>
   <summary>INSTALLATION</summary>
+
+  <img width="1893" height="996" alt="Image" src="https://github.com/user-attachments/assets/d5b24e96-e8e9-4764-b868-845048440bdc" />
   
   **⚠️ For all universal linux distros, no specific distro package manager was used in the creation of this project, and thus requires python installed, this is a mere python program with no varying ux and incompatability of specific packages, making it available to systems with python installed**
-
+  
   ## Using the shell script
   
   - **To begin your first tarot reading experience run the install script in shell using the following command, please note that this command does not account for git cloning, it assumes you've already git cloned the repository, if you havent git cloned the repository then git clone it now and follow up on the install script**
