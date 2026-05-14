@@ -2,7 +2,7 @@
 A tarot reading experience in the terminal
 
 > [!TIP]
-> TAROTUI uses an ollama model with 2gb of storage, that model is specifically and originally `ollama3.2`.
+> TAROTUI uses an ollama model with 3.4gb of storage, that model is specifically and originally `qwen3.5:4b`.
 > In the foreseeable future (yes i love using this word), options to choose custom models based on user preferences is going to be added to allocate different situations, such as not enough storage, etc
 
 ![Stars](https://img.shields.io/github/stars/Tsukeruu/tarotui?style=for-the-badge)
