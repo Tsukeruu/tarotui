@@ -36,9 +36,9 @@ main() {
   read -p "Would you also like to build the ollama model required for the reading? (Y/N) " ollamaPrompt
   if [[ "$ollamaPrompt" = "Y" || "$ollamaPrompt" = "y" ]]; then 
     ollama create tarotui -f src/utils/Ollama_custom/Modelfile
-    read -p "After creating the model: tarotui, would you like to delete the base model 'llama3.2', this would not affect anything in regards to the program" clean
+    read -p "After creating the model: tarotui, would you like to delete the base model 'qwen3.5', this would not affect anything in regards to the program" clean
     if [[ "$clean" = "Y" || "$clean" = "y" ]]; then
-      ollama rm llama3.2
+      ollama rm qwen3.5:4b
     else 
       continue
     fi
