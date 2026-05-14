@@ -36,6 +36,9 @@ import random
  ▀      ▀  ▀ ▀ ▀ ▀ ▀▀▀  ▀  ▀▀▀ ▀▀▀
 - This is the "functions"
 - This provides the functions necessary for execution and executes from the dataclass
+- In the future to maintain a light project, consider implementing get requests to a tarot api, examples include:
+    - https://github.com/ekelen/tarot-api
+- This results in deleting the json file keeping a light project overall
 """
 
 class main(initScreenData):
