@@ -6,6 +6,16 @@ A tarot reading experience in the terminal
 > In the foreseeable future (yes i love using this word), options to choose custom models based on user preferences is going to be added to allocate different situations, such as not enough storage, etc.
 > Please know that qwen3.5:4b and deepseek-r1 support is added by switching to the qwen3.5 / deepseek-r1 branch and rebuilding the model through ```ollama create tarotui -f src/utils/Ollama_custom/Modelfile```
 
+- All currently supported models are listed below
+
+| Model         | Size (in gb)              | Status                            |
+| :------------ | :-------------------------| :-------------------------------- |
+| DEEPSEEK-R1   | 5gb                       | Available at `deepseek-r1 `branch |
+| llama3.2      | 2-3 gb                    | Available at `master` branch      |     
+| qwen3.5:4b    | 3.4 gb                    | Available at `qwen3.5` bramch     |
+
+For contributions in regards to model availability please read [Contributing.md](CONTRIBUTING.md)
+
 ![Stars](https://img.shields.io/github/stars/Tsukeruu/tarotui?style=for-the-badge)
 ![License](https://img.shields.io/github/license/Tsukeruu/tarotui?style=for-the-badge)
 ![Last Commit](https://img.shields.io/github/last-commit/Tsukeruu/tarotui?style=for-the-badge)
@@ -63,7 +73,7 @@ After successfuly installing ollama proceed to build the tarotui model using the
 cd tarotui
 ollama create tarotui -f src/utils/Ollama_custom/Modelfile
 ```
-**The command above installs ollama 3.2 if not installed, which takes 2 gbs of storage and builds the custom model using the Modelfile which includes the persona required for the reading**
+**The command above installs either ollama 3.2 / deepseek / qwen3.5 if not installed, which depends on your current branch, for further information head to the start of the README, disk space / usage may vary from model to model, and builds the custom model using the Modelfile which includes the persona required for the reading**
 
 
 ## License
