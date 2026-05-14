@@ -1,6 +1,16 @@
 # TAROTUI
 A tarot reading experience in the terminal
 
+> [!TIP]
+> TAROTUI uses an ollama model with 2gb of storage, that model is specifically and originally `ollama3.2`.
+> In the foreseeable future (yes i love using this word), options to choose custom models based on user preferences is going to be added to allocate different situations, such as not enough storage, etc
+
+![Stars](https://img.shields.io/github/stars/Tsukeruu/tarotui?style=for-the-badge)
+![License](https://img.shields.io/github/license/Tsukeruu/tarotui?style=for-the-badge)
+![Last Commit](https://img.shields.io/github/last-commit/Tsukeruu/tarotui?style=for-the-badge)
+![Repo Size](https://img.shields.io/github/repo-size/Tsukeruu/tarotui?style=for-the-badge)
+![Issues](https://img.shields.io/github/issues/Tsukeruu/tarotui?style=for-the-badge)
+
 <img width="1200" height="800" alt="Image" src="https://github.com/user-attachments/assets/8679285a-d71e-4d98-a764-b15fab5ad695" />
 
 - Sorry for the slow post request my internet is bunz :(
