@@ -2,17 +2,17 @@
 A tarot reading experience in the terminal
 
 > [!TIP]
-> TAROTUI in the master branch uses an ollama model with approximately 2-3gb of storage, that model is specifically and originally `ollama3.2`.
-> In the foreseeable future (yes i love using this word), options to choose custom models based on user preferences is going to be added to allocate different situations, such as not enough storage, etc.
+> TAROTUI in the master branch uses an ollama model with approximately 2-3gb of storage, that model is specifically and originally `ollama3.2`.<br>
+> In the foreseeable future (yes i love using this word), options to choose custom models based on user preferences is going to be added to allocate different situations, such as not enough storage, etc. <br>
 > Please know that qwen3.5:4b and deepseek-r1 support is added by switching to the qwen3.5 / deepseek-r1 branch and rebuilding the model through ```ollama create tarotui -f src/utils/Ollama_custom/Modelfile```
 
 - All currently supported models are listed below
 
-| Model         | Size (in gb)              | Status                            |
-| :------------ | :-------------------------| :-------------------------------- |
-| DEEPSEEK-R1   | 5gb                       | Available at `deepseek-r1 `branch |
-| llama3.2      | 2-3 gb                    | Available at `master` branch      |     
-| qwen3.5:4b    | 3.4 gb                    | Available at `qwen3.5` bramch     |
+| Model         | Size (in gb)              | Status                            | Pros | Cons                                                                 |
+| :------------ | :-------------------------| :-------------------------------- |:-----------------------------------------|:---------------------------------|
+| DEEPSEEK-R1   | 5gb                       | Available at `deepseek-r1 `branch |Enhanced logic gate and detailed responses| Longer time for a `POST` request |
+| llama3.2      | 2-3 gb                    | Available at `master` branch      |Shorter time for a response, creative and quick| Less logic gate and reasoning and does not **implicitly** follow the Modelfile|
+| qwen3.5:4b    | 3.4 gb                    | Available at `qwen3.5` bramch     |Detailed responses and improved logic gate in comparison to llama3.2| Extremely longer time for a `POST` request and is slower|
 
 For contributions in regards to model availability please read [Contributing.md](CONTRIBUTING.md)
 
