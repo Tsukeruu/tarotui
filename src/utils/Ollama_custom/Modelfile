@@ -1,4 +1,4 @@
-FROM llama3.2
+FROM qwen3.5:4b
 
 
 SYSTEM """
