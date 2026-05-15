@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 from .dataclasses import initScreenData, Card, Arcana, Suit
-from .custom_errors import API_ERROR
+from .custom_errors import API_ERROR, UNDETECTABLE_OS
 from typing import Dict, List, Any, Tuple, ClassVar
 from enum import Enum
 
@@ -11,13 +11,13 @@ from rich.live import Live
 from terminaltexteffects.utils.graphics import Color
 from terminaltexteffects.effects.effect_laseretch import LaserEtch
 
-from os import system
 from shutil import get_terminal_size
 from sys import stdout
 from time import sleep
 from pathlib import Path
 from random import choice, sample
 from json import load
+from platform import system
 
 from prompt_toolkit import prompt
 from prompt_toolkit.styles import Style
@@ -29,6 +29,7 @@ from prompt_toolkit.shortcuts import choice
 
 import requests
 import random
+import os
 
 """
  ▀▄    ▀█▀ █▀█ █▀▄ █▀█ ▀█▀ █ █ ▀█▀
@@ -77,7 +78,9 @@ class main(initScreenData):
                 ("yes","Return to menu"),
                 ("no", "I want to exit TAROTUI :( ")
             ],
-            messageConfirm = "What would you like to do next?"
+            messageConfirm = "What would you like to do next?",
+            system = system(),
+            availableSystems = ["Linux", "Darwin", "Windows"]
         ) 
     
     def return_deck(self, json_file: str) -> List[Card]:
@@ -100,7 +103,13 @@ class main(initScreenData):
         return deck
 
     def clearScreen(self) -> None:
-        system("clear")
+        if self.system in self.availableSystems[:1]:
+            os.system("clear")
+        elif self.system == self.availableSystems[-1]:
+            os.system("cls")
+        else:
+            raise UNDETECTABLE_OS(message=None, error=None, command="clear / cls")
+        #Raise an os not detected custom_error
 
     def effectSettings(self, effect: terminaltexteffects.effects.effect_laseretch.LaserEtch):
         effect.effect_config.etch_speed: int = 1
