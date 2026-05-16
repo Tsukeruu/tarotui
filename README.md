@@ -77,7 +77,7 @@ ollama create tarotui -f src/utils/Ollama_custom/Modelfile
 
 ## Adding to PATH
 - To add tarotui to path, create a shell script of the contents below
-- Lets name this shell script... tarotui.sh
+- Lets name this shell script... tarotui (Note you do not need to add a .sh extension due to the presence of the shabang)
 - replace `<INSTALL_DIRECTORY>` with the absolute location of where you downloaded tarotui
 ### Fish shell
 ```bash
