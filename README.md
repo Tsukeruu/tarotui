@@ -75,6 +75,32 @@ ollama create tarotui -f src/utils/Ollama_custom/Modelfile
 ```
 **The command above installs either ollama 3.2 / deepseek / qwen3.5 if not installed, which depends on your current branch, for further information head to the start of the README, disk space / usage may vary from model to model, and builds the custom model using the Modelfile which includes the persona required for the reading**
 
+## Adding to PATH
+- To add tarotui to path, create a shell script of the contents below
+- Lets name this shell script... tarotui.sh
+- replace `<INSTALL_DIRECTORY>` with the absolute location of where you downloaded tarotui
+### Fish shell
+```bash
+#!/usr/bin/fish
+source <INSTALL_DIRECTORY>/src/venv/bin/activate.fish
+python <INSTALL_DIRECTORY>/tarot.py
+```
+### Bash shell
+```bash
+#!/usr/bin/bash
+source <INSTALL_DIRECTORY>/src/venv/bin/activate
+python <INSTALL_DIRECTORY>/tarot.py
+```
+### Zsh shell
+```bash
+#!/usr/bin/zsh
+source <INSTALL_DIRECTORY>/src/venv/bin/activate
+python <INSTALL_DIRECTORY>/tarot.py
+```
+
+- After creating the shell script move it to a directory where it is visible in PATH such as ~/.local/bin, /usr/bin or /usr/local/bin
+- And you should be good to go!
+
 
 ## License
 
