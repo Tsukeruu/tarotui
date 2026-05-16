@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 from typing import Any
 from requests.exceptions import RequestException
 
