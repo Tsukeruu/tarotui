@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 from dataclasses import dataclass, field
 from typing import Dict, List, Tuple, Any, Callable
 from src.utils.functions import main
