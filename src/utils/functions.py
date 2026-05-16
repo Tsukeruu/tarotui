@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 from dataclasses import dataclass, field
 from .dataclasses import initScreenData, Card, Arcana, Suit
 from .custom_errors import API_ERROR, UNDETECTABLE_OS
