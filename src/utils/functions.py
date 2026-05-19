@@ -30,6 +30,7 @@ from prompt_toolkit.auto_suggest import AutoSuggestFromHistory
 from prompt_toolkit.shortcuts import choice
 
 import requests
+import questionary
 import random
 import os
 
@@ -78,11 +79,13 @@ class main(initScreenData):
             """,
             optionsConfirm = [
                 ("yes","Return to menu"),
-                ("no", "I want to exit TAROTUI :( ")
+                ("no", "Exit TAROTUI"),
+                ("save", "Save reading to a text file")
             ],
             messageConfirm = "What would you like to do next?",
             system = system(),
-            availableSystems = ["Linux", "Darwin", "Windows"]
+            availableSystems = ["Linux", "Darwin", "Windows"],
+            dumpDir = Path(__file__).parent.parent.parent
         ) 
     
     def return_deck(self, json_file: str) -> List[Card]:
@@ -112,6 +115,11 @@ class main(initScreenData):
         else:
             raise UNDETECTABLE_OS(message=None, error=None, command="clear / cls")
         #Raise an os not detected custom_error
+    
+    def writeToFile(self, path: str, reading: str) -> str:
+        with open(f"{path}/readings.txt", "a") as dump:
+            dump.write(reading)
+        return path, reading
 
     def effectSettings(self, effect: terminaltexteffects.effects.effect_laseretch.LaserEtch):
         effect.effect_config.etch_speed: int = 1
@@ -123,7 +131,7 @@ class main(initScreenData):
             for frame in ascii_art: #Iteration for classes is achievable through a special method called iter, the rest is handled through terminal text effects
                 output.print(frame)
 
-    def typeWrite(self, paragraph: str, delay: int) -> Union[bool, str]:
+    def typeWrite(self, paragraph: str, delay: int, question: str) -> Union[bool, str]:
         initString: str = ""
         readingPanel: Panel = Panel(initString, title="[#89b4fa b]Reading[/#89b4fa b]", title_align="left", border_style="#89b4fa")
         #Vertical overflow is a dynamic arguement that calculates terminal height and decided what to do when the content being updated exceeds terminal height or is not showing, setting visible ensures the terminal scrolls with the content, by default when content exceeds terminal height, an ellipsis is shown indicating more is to be shown but does not usually update
@@ -135,6 +143,10 @@ class main(initScreenData):
         userChoice: str = self.confirmChoice(self.optionsConfirm, self.messageConfirm)
         if userChoice == "no":
             return "exit"
+        elif userChoice == "save":
+            path, reading = self.writeToFile(self.dumpDir,f"{question}\n{paragraph.strip('[b][/b]')+'\n\n'+('-' * 40)+'\n'}") #To remove multiple things in .strip just define them in a single string
+            self.console.print(f"Saved reading to text file: {path}/readings.txt") 
+            return "save"
         else:
             return False
         #Why did we not use our classic forloop with console.print? 
@@ -254,7 +266,7 @@ class main(initScreenData):
             self.console.print("[#f38ba8 b][ㄨ] A severe post request error has occured![/#f38ba8 b]")
             raise API_ERROR(message=None, error=requestException) 
         self.clearScreen()
-        return self.typeWrite(ollama_response, 0.01)
+        return self.typeWrite(ollama_response, 0.01, question)
 
     def renderPanel(self) -> rich.panel.Panel:
         mainPanel: rich.panel.Panel = Panel(self.boxContent.strip(), expand = False, title = "[b]About[/b]", title_align = "left", border_style = "#b4befe")
@@ -277,5 +289,7 @@ class main(initScreenData):
                 choice_for_exit: Union[str, bool, None] = execution()
                 if choice_for_exit == "exit":
                     return
+                elif choice_for_exit == "save":
+                    questionary.press_any_key_to_continue().ask()
                 else:
                     pass
