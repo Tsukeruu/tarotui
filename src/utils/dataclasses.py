@@ -49,6 +49,7 @@ class initScreenData:
     messageConfirm: str
     system: str
     availableSystems: List[str]
+    dumpDir: str
 
 
 #In a card, being a major arcana means having suit set to NONE which is one of the awesome features of an enum, a minor arcana has a suit set to Suit[0:3], a major arcana has 22 cards whereas a minor arcana has 56 cards
@@ -63,5 +64,6 @@ class Card:
     meaning_upright: str
     meaning_reversed: str
     element: Optional[str] = None
+
 
 
