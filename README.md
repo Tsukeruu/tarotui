@@ -82,19 +82,16 @@ ollama create tarotui -f src/utils/Ollama_custom/Modelfile
 ### Fish shell
 ```bash
 #!/usr/bin/fish
-source <INSTALL_DIRECTORY>/src/venv/bin/activate.fish
 python <INSTALL_DIRECTORY>/tarot.py
 ```
 ### Bash shell
 ```bash
 #!/usr/bin/bash
-source <INSTALL_DIRECTORY>/src/venv/bin/activate
 python <INSTALL_DIRECTORY>/tarot.py
 ```
 ### Zsh shell
 ```bash
 #!/usr/bin/zsh
-source <INSTALL_DIRECTORY>/src/venv/bin/activate
 python <INSTALL_DIRECTORY>/tarot.py
 ```
 
